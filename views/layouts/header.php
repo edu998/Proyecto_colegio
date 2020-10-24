@@ -58,9 +58,20 @@
                                 <a class="dropdown-item" href="<?= base_url ?>usuario/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
                             </div>
                         </li>
-                    <?php else : ?>
+                    <?php elseif(isset($_SESSION['student'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url ?>"> <i class="fa fa-home mr-1"></i> inicio</a>
+                            <a class="nav-link" href="<?=base_url?>inscripcion/elige_pago"> <i class="fa fa-home mr-1"></i>Realizar Pago</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido/a, <?=$_SESSION['student']->primer_nombre?></a>
+                            <div class="dropdown-menu">
+                                <div class="dropdow-divider"></div>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
+                            </div>
+                        </li>
+                    <?php else:?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?=base_url?>"> <i class="fa fa-home mr-1"></i> inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#portfolio"> <i class="fa fa-book mr-1" aria-hidden="true"></i> Clases</a>

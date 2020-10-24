@@ -1,6 +1,7 @@
 <?php
 require_once 'models/materia.php';
 require_once 'models/usuario.php';
+require_once 'models/nivel.php';
 class Utils{
 
     public static function showError($error,$campo){
@@ -32,6 +33,13 @@ class Utils{
         $profesores = $usuario->getAll();
 
        return $profesores;
+    }
+
+    public static function showNiveles(){
+        $nivel = new Nivel();
+        $niveles = $nivel->getAll();
+
+        return $niveles;
     }
     
 }

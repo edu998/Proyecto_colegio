@@ -85,4 +85,16 @@ class Nivel{
             return $result;
         }
     }
+
+    public function getByNivel(){
+        $sql = "SELECT COUNT(id) AS 'id', nombre FROM nivel GROUP BY nombre";
+        $niveles = $this->db->query($sql);
+        $result = false;
+        if($niveles && $niveles->num_rows >= 1){
+            $result = $niveles;
+            return $result;
+        }
+    }
+
+    
 }

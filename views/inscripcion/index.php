@@ -49,7 +49,7 @@
             </div>
             <div class="text-center mt-4">
                 <p class="text-secondary">Estás listo para que tú, tu hijo o tus familires, aprendan lo mejor de lo mejor?</p>
-                <a href="#" class="text-dark"><b>Entonces empecemos ya!.</b></a>
+                <a href="<?=base_url?>estudiante/elige_nivel" class="text-dark"><b>Entonces empecemos ya!.</b></a>
             </div>
         </div>
     </section>
@@ -135,7 +135,7 @@
                                 <li>Clases presenciales</li>
                                 <li>Horarios especiales</li>
                             </ul>                            
-                            <a href="#" class="btn btn-primary full-width mt-4">Inscríbete ahora</a>
+                            <a href="<?=base_url?>estudiante/elige_nivel" class="btn btn-primary full-width mt-4">Inscríbete ahora</a>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                                 <li>Becas deportivas</li>
                                 <li>Becas de alto rendimiento</li>
                             </ul>
-                            <a href="#" class="btn btn-alternate full-width mt-4">Inscríbete ahora</a>
+                            <a href="<?=base_url?>estudiante/elige_nivel" class="btn btn-alternate full-width mt-4">Inscríbete ahora</a>
                         </div>
                     </div>
                 </div>
