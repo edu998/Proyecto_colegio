@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-        <label for="exampleFormControlSelect2">Selecciona el Nivel (A continuacion selecciona el Año o Grado en el cual vas a Inscribirte):</label>
+        <label for="exampleFormControlSelect2">Selecciona el Año</label>
         <select class="form-control p-0" name="nivel_id" id="exampleFormControlSelect2">
         <?php $niveles = Utils::showNiveles();
             if (!empty($niveles)) :

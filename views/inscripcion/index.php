@@ -135,7 +135,7 @@
                                 <li>Clases presenciales</li>
                                 <li>Horarios especiales</li>
                             </ul>                            
-                            <a href="<?=base_url?>estudiante/elige_nivel" class="btn btn-primary full-width mt-4">Inscríbete ahora</a>
+                            <a href="<?=base_url?>estudiante/inscripcion_primaria" class="btn btn-primary full-width mt-4">Inscríbete ahora</a>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                                 <li>Becas deportivas</li>
                                 <li>Becas de alto rendimiento</li>
                             </ul>
-                            <a href="<?=base_url?>estudiante/elige_nivel" class="btn btn-alternate full-width mt-4">Inscríbete ahora</a>
+                            <a href="<?=base_url?>estudiante/inscripcion_bachillerato" class="btn btn-alternate full-width mt-4">Inscríbete ahora</a>
                         </div>
                     </div>
                 </div>
