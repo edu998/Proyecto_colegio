@@ -29,6 +29,13 @@ class EstudianteController{
 
             $errors = array();
 
+            if (is_numeric($cedula)) {
+                $cedula_valido = true;
+            } else {
+                $cedula_invalido = false;
+                $errors['cedula'] = 'Error, La Cedula debe Contener Solo Numeros';
+            }
+
             if(strlen($cedula) == 8){
                 $cedula_valido=true;
             }else {
@@ -97,6 +104,13 @@ class EstudianteController{
                 $errors['segundo_apellido'] = 'Error, El Segundo Apellido esta Vacio';
             }else {
                 $segundoApellido_valido=true;
+            }
+
+            if (is_numeric($telefono_celular)) {
+                $telefonoCelular_valido = true;
+            } else {
+                $telefonoCelular_invalidoo = false;
+                $errors['telefono_celular'] = 'Error, El Numero Celular debe Contener Solo Numeros';
             }
 
             if(strlen($telefono_celular) == 11){
@@ -177,6 +191,13 @@ class EstudianteController{
 
             $errors = array();
 
+            if (is_numeric($cedula)) {
+                $cedula_valido = true;
+            } else {
+                $cedula_invalido = false;
+                $errors['cedula'] = 'Error, La Cedula debe Contener Solo Numeros';
+            }
+
             if(strlen($cedula) == 8){
                 $cedula_valido=true;
             }else {
@@ -245,6 +266,13 @@ class EstudianteController{
                 $errors['segundo_apellido'] = 'Error, El Segundo Apellido esta Vacio';
             }else {
                 $segundoApellido_valido=true;
+            }
+
+            if (is_numeric($telefono_celular)) {
+                $telefonoCelular_valido = true;
+            } else {
+                $telefonoCelular_invalidoo = false;
+                $errors['telefono_celular'] = 'Error, El Numero Celular debe Contener Solo Numeros';
             }
 
             if(strlen($telefono_celular) == 11){

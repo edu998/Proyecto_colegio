@@ -77,7 +77,7 @@
     </div>
 
     <div class="form-label-group">
-      <textarea id="inputDireccion" name="direccion" class="form-control" placeholder="Direccion Donde Vives.." autofocus></textarea>
+      <textarea id="inputDireccion" name="direccion" class="form-control" placeholder="Por Favor Inserta tu Direccion Mejor Resumida Posible.." autofocus></textarea>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'direccion') : '' ?>
     </div>
 
