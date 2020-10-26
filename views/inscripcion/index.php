@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="content-center">
                 <h2>Contamos con el personal más calificado, dando a nuestros estudiantes, las mejores herramientas<b> -Para brindarles un gran futuro.</b></h2>
-                <p class="text-secondary">Para demostrarte la gran calidad en nuestras método de enseñanza, puedes inscribirte a ingresar a nuestras clases gratuitas.</p>
+                <p class="text-secondary">Para demostrarte la gran calidad en nuestras método de enseñanza.</p>
             </div>
             <div class="row">
                 <div class="col-md-6">
