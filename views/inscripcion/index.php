@@ -9,41 +9,49 @@
                 <div class="col-md-6">
                     <div class="portfolio-container">
                         <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Clases de Castellano y literatura</h2>
-                            </a>
+                            
+                                <h2 class="text-white">Clases de Castellano y literatura</h2>
+                            
                         </div>
+                        <a href="<?=base_url?>estudiante/elige_nivel">
                         <img src="<?=base_url?>assets/images/portfolio-01.jpg" class="img-fluid" alt="Portfolio 01">
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="portfolio-container">
                         <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Clases de musica y artes musicales</h2>
-                            </a>
+                           
+                                <h2 class="text-white">Clases de musica y artes musicales</h2>
+                            
                         </div>
+                        <a href="<?=base_url?>estudiante/elige_nivel">
                         <img src="<?=base_url?>assets/images/portfolio-02.jpg" class="img-fluid" alt="Portfolio 02">
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="portfolio-container">
                         <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Clases de diseño textíl</h2>
-                            </a>
+
+                        <h2 class="text-white">Clases de diseño textíl</h2>
+                           
                         </div>
-                        <img src="<?=base_url?>assets/images/portfolio-03.jpg" class="img-fluid" alt="Portfolio 03">
+                        <a href="<?=base_url?>estudiante/elige_nivel">
+                            <img src="<?=base_url?>assets/images/portfolio-03.jpg" class="img-fluid" alt="Portfolio 03">
+                            </a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="portfolio-container">
                         <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Clases de mecánica automotriz moderna</h2>
-                            </a>
+
+                        <h2 class="text-white">Clases de mecánica automotriz moderna</h2>                           
+                           
                         </div>
+                        <a href="<?=base_url?>estudiante/elige_nivel">
                         <img src="<?=base_url?>assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
+                        </a>
                     </div>
                 </div>
             </div>
