@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Seleccione el Profesoer</label>
+        <label for="exampleFormControlSelect1">Seleccione el Profesor</label>
         <select class="form-control p-0" name="usuario_id" id="exampleFormControlSelect1">
             <?php $profesores = Utils::showProfesores();
             if (!empty($profesores)) :

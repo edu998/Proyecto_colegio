@@ -21,15 +21,7 @@ class NivelController{
             $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : false;
             $numero_tipo = isset($_POST['numero_tipo']) ? $_POST['numero_tipo'] : false;
 
-            $errors = array();
-            
-            if(is_string($nombre) && !is_numeric($nombre) && !preg_match("/[0-9]/", $nombre)){
-                $nombre_valido=true;
-            }else{
-                $nombre_invalido=false;
-                $errors['nombre'] = 'El Nombre debe Contener Letras';
-            }
-            
+
             if(empty($nombre)){
                 $nombre_invalido=false;
                 $errors['nombre'] = 'Error, El Nombre esta Vacio';

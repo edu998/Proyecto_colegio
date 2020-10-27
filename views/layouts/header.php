@@ -50,6 +50,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?=base_url?>usuario/gestion_profesor">Gestion de Profesores</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?=base_url?>horario/gestion_horario">Gestion de Horarios</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido Admin</a>
                             <div class="dropdown-menu">
