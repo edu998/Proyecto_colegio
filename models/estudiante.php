@@ -154,6 +154,18 @@ class Estudiante
         return $this;
     }
 
+    public function getListado(){
+        $sql = "SELECT i.status AS 'status',e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero'  FROM inscripcion i INNER JOIN estudiante e ON i.estudiante_id = e.id INNER JOIN nivel n ON e.nivel_id = n.id ORDER BY i.id DESC";
+        $estudiantes = $this->db->query($sql);
+
+        $result = false;
+        if($estudiantes && $estudiantes->num_rows >= 1){
+            $result = $estudiantes;
+        }
+
+        return $result;
+    }
+
     public function save()
     {
         $sql = "INSERT INTO estudiante VALUES(NULL, {$this->getCedula()}, {$this->getNivel_id()}, '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";

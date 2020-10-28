@@ -1,6 +1,7 @@
 <?php
 
-class Nivel{
+class Nivel
+{
 
     private $id;
     private $nombre;
@@ -65,36 +66,45 @@ class Nivel{
         return $this;
     }
 
-    public function save(){
-        $sql = "INSERT INTO nivel VALUES(null, '{$this->getNombre()}', '{$this->getTipo()}', '{$this->getNumero_tipo()}')";
-        $save = $this->db->query($sql);
+    public function save()
+    {
         $result = false;
-        if($save){
-            $result = true;
+
+        $nombre = $this->nombre;
+        $tipo = $this->tipo;
+        $numero_tipo = $this->numero_tipo;
+        $sql = "SELECT * FROM nivel WHERE nombre='{$nombre}' AND tipo='{$tipo}' AND numero_tipo={$numero_tipo};";
+        $search = $this->db->query($sql);
+
+        if ($search && $search->num_rows != 0) {
+            $result = false;
+        } else {
+            $sql = "INSERT INTO nivel VALUES(null, '{$this->getNombre()}', '{$this->getTipo()}', '{$this->getNumero_tipo()}')";
+            $result = $this->db->query($sql);
         }
 
         return $result;
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         $sql = "SELECT * FROM nivel ORDER BY id ASC";
         $niveles = $this->db->query($sql);
         $result = false;
-        if($niveles && $niveles->num_rows >= 1){
+        if ($niveles && $niveles->num_rows >= 1) {
             $result = $niveles;
             return $result;
         }
     }
 
-    public function getByNivel(){
+    public function getByNivel()
+    {
         $sql = "SELECT COUNT(id) AS 'id', nombre FROM nivel GROUP BY nombre";
         $niveles = $this->db->query($sql);
         $result = false;
-        if($niveles && $niveles->num_rows >= 1){
+        if ($niveles && $niveles->num_rows >= 1) {
             $result = $niveles;
             return $result;
         }
     }
-
-    
 }

@@ -4,8 +4,11 @@
         <tr class="thead-dark">
             <th scope="col">Profesor</th>
             <th scope="col">Materia</th>
-            <th scope="col">Desde</th>
-            <th scope="col">Hasta</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Seccion</th>
+            <th scope="col">Dia</th>
+            <th scope="col">Horario</th>
+            
         </tr>
         <?php if (isset($materias_p) && !empty($materias_p)) : ?>
             <?php while ($materia_p = $materias_p->fetch_object()) : ?>

@@ -6,7 +6,7 @@
     </div>
   <?php elseif (isset($_SESSION['materia']) && $_SESSION['materia'] != 'success') : ?>
     <div class="alert alert-danger" role="alert">
-      <strong>Error!, al Registrar esta materia Verifica bien Los datos que Ingresaste..</strong>
+      <strong>Error!, al Registrar esta materia Porque ya existe, Por favor Inserta Otra..</strong>
     <?php endif; ?>
     </div>
     <?php Utils::delete_session('materia') ?>

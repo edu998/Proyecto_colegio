@@ -5,7 +5,7 @@
     </div>
   <?php elseif (isset($_SESSION['nivel']) && $_SESSION['nivel'] != 'success') : ?>
     <div class="alert alert-danger" role="alert">
-      <strong>Error!, al Registrar este Nivel Verifica bien Los datos que Ingresaste..</strong>
+      <strong>Error!, al Registrar Porque los datos ya existen..</strong>
     <?php endif; ?>
     </div>
     <?php Utils::delete_session('nivel') ?>
@@ -15,14 +15,17 @@
       <p class="text-secondary">Inserta los Niveles Primaria o Bachillerato y asignale Los numeros y el tipo si es Año o Grado a cada Nivel..</p>
     </div>
 
-    <div class="form-label-group">
-      <input type="text" id="inputNombre" name="nombre" class="form-control" placeholder="Nombre del nivel" autofocus>
-      <label for="inputNombre">Nombre del nivel</label>
+    <div class="form-group">
+      <label for="exampleFormNombre">Seleccione el Nombre del Nivel</label>
+      <select class="form-control p-0" name="nombre" id="exampleFormNombre">
+        <option value="Primaria">Primaria</option>
+        <option value="Bachillerato">Bachillerato</option>
+      </select>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'nombre') : '' ?>
     </div>
 
     <div class="form-group">
-      <label for="exampleFormControlSelect1">Seleccion el Tipo</label>
+      <label for="exampleFormControlSelect1">Seleccione el Tipo</label>
       <select class="form-control p-0" name="tipo" id="exampleFormControlSelect1">
         <option value="Año">Año</option>
         <option value="Grado">Grado</option>
