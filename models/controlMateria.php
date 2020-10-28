@@ -1,15 +1,18 @@
 <?php
 
-class ControlMateria{
+class ControlMateria
+{
 
     private $id;
     private $usuario_id;
     private $materia_id;
-    private $horario_desde;
-    private $horario_hasta;
+    private $nivel_id;
+    private $seccion;
+    private $horario_id;
+    private $dia;
     private $db;
 
-    
+
     public function __construct()
     {
         $this->db = DB::connection();
@@ -56,55 +59,78 @@ class ControlMateria{
         return $this;
     }
 
- 
-    public function getHorario_desde()
+
+    public function getNivel_id()
     {
-        return $this->horario_desde;
+        return $this->nivel_id;
     }
 
 
-    public function setHorario_desde($horario_desde)
+    public function setNivel_id($nivel_id)
     {
-        $this->horario_desde = $horario_desde;
+        $this->nivel_id = $nivel_id;
 
         return $this;
     }
 
 
-    public function getHorario_hasta()
+    public function getSeccion()
     {
-        return $this->horario_hasta;
+        return $this->seccion;
     }
 
 
-    public function setHorario_hasta($horario_hasta)
+    public function setSeccion($seccion)
     {
-        $this->horario_hasta = $horario_hasta;
+        $this->seccion = $seccion;
 
         return $this;
     }
 
-    public function save(){
-        $sql = "INSERT INTO det_mat_prof VALUES(null, {$this->getUsuario_id()}, {$this->getMateria_id()}, '{$this->getHorario_desde()}', '{$this->getHorario_hasta()}')";
 
-        $save = $this->db->query($sql);
-        $result = false;
-        if($save){
-            $result = true;
+    public function getHorario_id()
+    {
+        return $this->horario_id;
+    }
+
+
+    public function setHorario_id($horario_id)
+    {
+        $this->horario_id = $horario_id;
+
+        return $this;
+    }
+
+
+    public function getDia()
+    {
+        return $this->dia;
+    }
+
+
+    public function setDia($dia)
+    {
+        $this->dia = $dia;
+
+        return $this;
+    }
+
+
+    public function save()
+    {
+        $materia = $this->materia_id;
+        $nivel = $this->nivel_id;
+        $seccion = $this->seccion;
+        $horario = $this->horario_id;
+        $sql = "SELECT * FROM det_mat_prof WHERE materia_id={$materia} AND nivel_id={$nivel} AND seccion={$seccion} AND horario_id={$horario}";
+        $query = $this->db->query($sql);
+        
+        if($query && $query->num_rows == 1){
+            $result = false;
+        }elseif(!$query && $query->num_rows != 1) {
+            $insert = "INSERT INTO det_mat_prof VALUES(null, {$this->getUsuario_id()}, {$this->getMateria_id()}, {$this->getNivel_id()}, '{$this->getSeccion()}', {$this->getHorario_id()}, '{$this->getDia()}')";
+            $result = $this->db->query($insert);
         }
-
         return $result;
-    }
-
-    public function getMateriasByUsuario(){
-        $sql = "SELECT d.horario_desde, d.horario_hasta, m.nombre AS 'materia', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor' FROM det_mat_prof d INNER JOIN usuario u ON d.usuario_id = u.id INNER JOIN materia m ON d.materia_id = m.id ORDER BY d.id DESC;";
-
-       $profesores_m =  $this->db->query($sql);
-        $result = false;
-       if($profesores_m && $profesores_m->num_rows >= 1){
-            $result = $profesores_m;
-
-            return $result;
-       }
     }
 }

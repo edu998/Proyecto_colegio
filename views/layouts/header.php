@@ -57,6 +57,10 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido Admin</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="<?=base_url?>controlm/control_materias">Control de Materias</a>
+                                <a class="dropdown-item" href="<?=base_url?>pago/control_pagos">Control de Pagos</a>
+                                <a class="dropdown-item" href="<?=base_url?>seccion/gestion_bachillerato">Asignacion de Bachillerato</a>
+                                <a class="dropdown-item" href="<?=base_url?>seccion/gestion_grado">Asignacion de Primaria</a>
+                                <a class="dropdown-item" href="<?=base_url?>inscripcion/listado_estudiantes">Gestion de Inscripcion</a>
                                 <div class="dropdow-divider"></div>
                                 <a class="dropdown-item" href="<?= base_url ?>usuario/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
                             </div>

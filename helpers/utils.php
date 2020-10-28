@@ -2,6 +2,9 @@
 require_once 'models/materia.php';
 require_once 'models/usuario.php';
 require_once 'models/nivel.php';
+require_once 'models/horario.php';
+require_once 'models/pago.php';
+require_once 'models/seccion.php';
 class Utils{
 
     public static function showError($error,$campo){
@@ -41,5 +44,28 @@ class Utils{
 
         return $niveles;
     }
+
+    public static function showHorarios(){
+        $horario = new Horario();
+        $horarios = $horario->getAll();
+
+        return $horarios;
+    }
     
+    public static function notPayInscrip($id){
+        $pago = new Pago();
+        $pago->setId($id);
+        $estudiante = $pago->issetInscrip();
+
+        return $estudiante;
+    }
+
+    public static function showSeccion($id){
+        $secciones = new Seccion();
+        $seccion = $secciones->getIdBySeccion($id);
+
+        return $seccion;
+    }
+
+
 }

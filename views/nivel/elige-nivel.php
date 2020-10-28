@@ -1,5 +1,6 @@
 <div class="container mt-5">
     <div class="row">
+    <h2 class="mt-5 mx-auto">Por favor, Selecciona En que Nivel Te vas a Inscribir:</h2>
         <div class="col-md-6">
             <div class="portfolio-container">
                 <div class="portfolio-details">
