@@ -2,6 +2,10 @@
 require_once 'models/seccion.php';
 class SeccionController{
 
+    public function control_secciones(){
+        require_once 'views/seccion/control-secciones.php';
+    }
+
     public function gestion_bachillerato(){
         $seccion = new Seccion();
         $secciones = $seccion->getAllByNivel();

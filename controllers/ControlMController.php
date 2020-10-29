@@ -7,6 +7,8 @@ class ControlMController
 
     public function control_materias()
     {
+        $controlM = new ControlMateria();
+        $materias_p = $controlM->getSeccionByProfesor();
         require_once 'views/materia/control.php';
     }
 
