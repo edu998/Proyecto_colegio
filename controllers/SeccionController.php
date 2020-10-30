@@ -3,6 +3,29 @@ require_once 'models/seccion.php';
 class SeccionController{
 
     public function control_secciones(){
+        $seccion = new Seccion();
+        $primern_a= $seccion->getSeccionByNivel2();
+        $primern_b = $seccion->getSeccionByNivel3();
+        $segundon_a = $seccion->getSeccionByNivel4();
+        $segundon_b = $seccion->getSeccionByNivel5();
+        $tercern_a = $seccion->getSeccionByNivel6();
+        $tercern_b = $seccion->getSeccionByNivel7();
+        $cuarton_a = $seccion->getSeccionByNivel8();
+        $cuarton_b = $seccion->getSeccionByNivel9();
+        $quinton_a = $seccion->getSeccionByNivel10();
+        $quinton_b = $seccion->getSeccionByNivel11();
+        $primerg_a = $seccion->getSeccionByNivel12();
+        $primerg_b = $seccion->getSeccionByNivel13();
+        $segundog_a = $seccion->getSeccionByNivel14();
+        $segundog_b = $seccion->getSeccionByNivel15();
+        $tercerg_a = $seccion->getSeccionByNivel16();
+        $tercerg_b = $seccion->getSeccionByNivel17();
+        $cuartog_a = $seccion->getSeccionByNivel18();
+        $cuartog_b = $seccion->getSeccionByNivel19();
+        $quintog_a = $seccion->getSeccionByNivel20();
+        $quintog_b = $seccion->getSeccionByNivel21();
+        $sestog_a = $seccion->getSeccionByNivel22();
+        $sestog_b = $seccion->getSeccionByNivel23();
         require_once 'views/seccion/control-secciones.php';
     }
 

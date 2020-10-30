@@ -90,4 +90,269 @@ class Seccion
         return $result;
     }
 
+    public function getSeccionByNivel2(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 1 AND n.tipo = 'Año' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel3(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 1 AND n.tipo = 'Año' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel4(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 2 AND n.tipo = 'Año' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel5(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 2 AND n.tipo = 'Año' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel6(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 3 AND n.tipo = 'Año' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel7(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 3 AND n.tipo = 'Año' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel8(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 4 AND n.tipo = 'Año' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel9(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 4 AND n.tipo = 'Año' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel10(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 5 AND n.tipo = 'Año' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel11(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 5 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel12(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 1 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel13(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 1 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel14(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 2 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel15(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 2 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel16(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 3 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel17(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 3 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel18(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 4 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel19(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 4 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel20(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 5 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel21(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 5 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+
+    public function getSeccionByNivel22(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 6 AND n.tipo = 'Grado' AND s.nombre_seccion = 'A' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
+    public function getSeccionByNivel23(){
+        $sql = "SELECT n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ',e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ',e.segundo_apellido) AS 'apellidos' FROM seccion s INNER JOIN estudiante e ON s.estudiante_id=e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE n.numero_tipo = 6 AND n.tipo = 'Grado' AND s.nombre_seccion = 'B' ORDER BY e.cedula ASC";
+
+        $estudiantes_seccion = $this->db->query($sql);
+        $result = false;
+        if($estudiantes_seccion && $estudiantes_seccion->num_rows >= 1){
+            $result = $estudiantes_seccion;
+        }
+
+        return $result;
+    }
+
 }
