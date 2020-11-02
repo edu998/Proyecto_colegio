@@ -5,6 +5,7 @@ require_once 'models/nivel.php';
 class NivelController{
 
     public function gestion_nivel(){
+        Utils::isAdmin();
         $nivel = new Nivel();
         $niveles = $nivel->getAll();
         require_once 'views/nivel/gestion-nivel.php';
@@ -12,10 +13,12 @@ class NivelController{
 
 
     public function create(){
+        Utils::isAdmin();
         require_once 'views/nivel/create.php';
     }
 
     public function save(){
+        Utils::isAdmin();
         if(isset($_POST)){
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
             $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : false;

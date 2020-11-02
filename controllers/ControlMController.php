@@ -7,6 +7,7 @@ class ControlMController
 
     public function control_materias()
     {
+        Utils::isAdmin();
         $controlM = new ControlMateria();
         $materias_p = $controlM->getSeccionByProfesor();
         require_once 'views/materia/control.php';
@@ -14,12 +15,13 @@ class ControlMController
 
     public function asignar_materia()
     {
-
+        Utils::isAdmin();
         require_once 'views/materia/asignar.php';
     }
 
     public function save()
     {
+        Utils::isAdmin();
         if (isset($_POST)) {
             $usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : false;
             $materia_id = isset($_POST['materia_id']) ? $_POST['materia_id'] : false;

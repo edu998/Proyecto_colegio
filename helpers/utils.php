@@ -5,7 +5,29 @@ require_once 'models/nivel.php';
 require_once 'models/horario.php';
 require_once 'models/pago.php';
 require_once 'models/seccion.php';
+require_once 'models/controlMateria.php';
 class Utils{
+
+    public static function isAdmin(){
+        if(!isset($_SESSION['admin'])){
+            $_SESSION['authentication'] = 'failed';
+            header('location: ' . base_url . 'usuario/login');
+        }
+    }
+
+    public static function isUser(){
+        if(!isset($_SESSION['user'])){
+            $_SESSION['authentication'] = 'failed';
+            header('location: ' . base_url . 'usuario/login');
+        }
+    }
+
+    public static function isStudent(){
+        if(!isset($_SESSION['student'])){
+            $_SESSION['authentication'] = 'failed';
+            header('location: ' . base_url . 'usuario/login');
+        }
+    }
 
     public static function showError($error,$campo){
         $alert = '';
@@ -67,5 +89,17 @@ class Utils{
         return $seccion;
     }
 
+    public static function showNivelByProfesor($id){
+        $control_m = new ControlMateria();
+        $nivel_profesor = $control_m->getNivel($id);
 
+        return $nivel_profesor;
+    }
+
+    public static function showEstudiantesByProfesor($id){
+        $control_m = new ControlMateria();
+        $estudiantes_pr = $control_m->getEstudiantes($id);
+
+        return $estudiantes_pr;
+    }
 }

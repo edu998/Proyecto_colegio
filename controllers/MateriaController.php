@@ -5,16 +5,19 @@ require_once 'models/materia.php';
 class MateriaController{
 
     public function gestion_materias(){
+        Utils::isAdmin();
         $materia = new Materia();
         $materias = $materia->getAll();
         require_once 'views/materia/gestion-materias.php';
     }
 
     public function create(){
+        Utils::isAdmin();
         require_once 'views/materia/create.php';
     }
 
     public function save(){
+        Utils::isAdmin();
         if(isset($_POST)){
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
 

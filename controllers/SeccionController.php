@@ -3,6 +3,7 @@ require_once 'models/seccion.php';
 class SeccionController{
 
     public function control_secciones(){
+        Utils::isAdmin();
         $seccion = new Seccion();
         $primern_a= $seccion->getSeccionByNivel2();
         $primern_b = $seccion->getSeccionByNivel3();
@@ -30,6 +31,7 @@ class SeccionController{
     }
 
     public function gestion_bachillerato(){
+        Utils::isAdmin();
         $seccion = new Seccion();
         $secciones = $seccion->getAllByNivel();
 
@@ -37,6 +39,7 @@ class SeccionController{
     }
 
     public function gestion_grado(){
+        Utils::isAdmin();
         $grado = new Seccion();
         $grados = $grado->getAllByNivel();
 

@@ -6,6 +6,7 @@ class PagoController
 {
 
     public function control_pagos(){
+        Utils::isAdmin();
         $pago = new Pago();
         $pagos = $pago->getControlPagos();
         require_once 'views/pago/control-pagos.php';
@@ -13,6 +14,7 @@ class PagoController
 
     public function elige_tipo_pago()
     {
+        Utils::isStudent();
         if (isset($_GET['nombre_pago'])) {
             $nombre_pago = $_GET['nombre_pago'];
             require_once 'views/pago/elige-tipo-pago.php';
@@ -23,6 +25,7 @@ class PagoController
 
     public function pago_efectivo()
     {
+        Utils::isStudent();
         if (isset($_GET['nombre_pago']) && isset($_GET['tipo_pago'])) {
             $tipo_pago = $_GET['tipo_pago'];
             $nombre_pago = $_GET['nombre_pago'];
@@ -34,6 +37,7 @@ class PagoController
 
     public function pago_transferencia()
     {
+        Utils::isStudent();
         if (isset($_GET['nombre_pago']) && isset($_GET['tipo_pago'])) {
             $tipo_pago = $_GET['tipo_pago'];
             $nombre_pago = $_GET['nombre_pago'];
@@ -45,6 +49,7 @@ class PagoController
 
     public function save_e()
     {
+        Utils::isStudent();
         if (isset($_POST)) {
             $estudiante_id = isset($_SESSION['student']) ? $_SESSION['student']->id : false;
             $tipo_pago = isset($_POST['tipo_pago']) ? $_POST['tipo_pago'] : false;
@@ -85,6 +90,7 @@ class PagoController
 
     public function save_t()
     {
+        Utils::isStudent();
         if (isset($_POST)) {
             $estudiante_id = isset($_SESSION['student']) ? $_SESSION['student']->id : false;
             $tipo_pago = isset($_POST['tipo_pago']) ? $_POST['tipo_pago'] : false;

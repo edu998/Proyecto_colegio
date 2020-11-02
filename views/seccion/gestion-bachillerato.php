@@ -15,6 +15,8 @@
     <table class="table table-striped text-center container">
     
         <tr class="thead-dark">
+            <th scope="col">Numero</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Seccion</th>
             <th scope="col">Cedula</th>
             <th scope="col">Primer Nombre</th>
@@ -27,6 +29,8 @@
                 if ($seccion->nivel == 'Bachillerato') :
             ?>
                     <tr>
+                        <td><?=$seccion->numero?></td>
+                        <td><?=$seccion->tipo?></td>
                     <?php 
                         $seccion_e = Utils::showSeccion($seccion->id);
                         if(!empty($seccion_e) && is_object($seccion_e)):?>

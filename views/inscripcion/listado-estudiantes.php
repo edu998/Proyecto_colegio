@@ -10,7 +10,7 @@
             <th scope="col">Primer Apellido</th>
             <th scope="col">Segundo Apellido</th>
             <th scope="col">Nivel</th>
-            <th scope="col">Numero</th>
+            <th scope="col">Año o Grado</th>
         </tr>
         <?php 
         

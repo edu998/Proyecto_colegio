@@ -147,4 +147,30 @@ class ControlMateria
 
         return $result;
     }
+
+    public function getNivel($id){
+        $sql = "SELECT m.id AS 'materia_id', s.nombre_seccion AS 'seccion', m.nombre AS 'materia', n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo' FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN seccion s ON det.seccion = s.nombre_seccion INNER JOIN estudiante e ON s.estudiante_id = e.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id WHERE u.id = $id GROUP BY det.id ORDER BY det.id DESC";
+
+        $niveles = $this->db->query($sql);
+
+        $result = false;
+        if($niveles && $niveles->num_rows >= 1){
+            $result = $niveles;
+        }
+
+        return $result;
+    }
+
+    public function getEstudiantes($id){
+        $sql = "SELECT  e.id AS 'estudiante_id', n.numero_tipo AS 'numero_tipo', n.tipo AS 'tipo', s.nombre_seccion AS 'seccion', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ', e.segundo_nombre) AS 'nombres', CONCAT(e.primer_apellido, ' ', e.segundo_apellido) AS 'apellidos' FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN seccion s ON det.seccion = s.nombre_seccion INNER JOIN estudiante e ON det.nivel_id = e.nivel_id INNER JOIN nivel n ON e.nivel_id = n.id INNER JOIN materia m ON det.materia_id = m.id WHERE u.id = $id AND e.id = s.estudiante_id GROUP BY e.id ORDER BY e.id ASC";
+
+        $estudiantes = $this->db->query($sql);
+
+        $result = false;
+        if($estudiantes && $estudiantes->num_rows >= 1){
+            $result = $estudiantes;
+        }
+
+        return $result;
+    }
 }

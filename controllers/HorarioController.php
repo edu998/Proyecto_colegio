@@ -5,16 +5,19 @@ require_once 'models/horario.php';
 class HorarioController{
 
     public function gestion_horario(){
+        Utils::isAdmin();
         $horario = new Horario();
         $horarios = $horario->getAll();
         require_once 'views/horario/gestion-horario.php';
     }
 
     public function create(){
+        Utils::isAdmin();
         require_once 'views/horario/create.php';
     }
 
     public function save(){
+        Utils::isAdmin();
         if(isset($_POST)){
             $horario_desde = isset($_POST['horario_desde']) ? $_POST['horario_desde'] : false;
 

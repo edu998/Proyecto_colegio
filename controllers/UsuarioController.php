@@ -7,6 +7,7 @@ class UsuarioController
 
     public function gestion_profesor()
     {
+        Utils::isAdmin();
         $usuario = new Usuario();
         $profesores = $usuario->getAll();
         require_once 'views/usuario/gestion_profesor.php';
@@ -14,11 +15,13 @@ class UsuarioController
 
     public function register()
     {
+        Utils::isAdmin();
         require_once 'views/usuario/register.php';
     }
 
     public function save()
     {
+        Utils::isAdmin();
         if (isset($_POST)) {
             $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : false;
             $primer_nombre = isset($_POST['primer_nombre']) ? $_POST['primer_nombre'] : false;
@@ -191,12 +194,14 @@ class UsuarioController
             $authentication = $usuario->login();
 
             if ($authentication && is_object($authentication)) {
-                $_SESSION['user'] = $authentication;
-
+                if ($authentication->role == 'user') {
+                    $_SESSION['user'] = $authentication;
+                    header('location: ' . base_url . 'usuario/listado_mis_estudiantes');
+                }
                 if ($authentication->role == 'admin') {
                     $_SESSION['admin'] = true;
+                    header('location: ' . base_url . 'nivel/gestion_nivel');
                 }
-                header('location: ' . base_url . 'nivel/gestion_nivel');
             } else {
                 $estudiante = new Estudiante();
                 $estudiante->setCedula($username);
@@ -232,6 +237,7 @@ class UsuarioController
 
     public function detail()
     {
+        Utils::isAdmin();
         if (isset($_GET['id'])) {
             $usuario_id = $_GET['id'];
 
@@ -244,5 +250,24 @@ class UsuarioController
             $_SESSION['not_found'] = 'failed';
             header('location:' . base_url . 'usuario/gestion_profesor');
         }
+    }
+
+    public static function LoadMateriaEstudiantes()
+    {
+        Utils::isUser();
+        if (isset($_GET['materia']) && isset($_GET['estudiante']) && isset($_GET['nivel'])) {
+            $materia_id = $_GET['materia'];
+            $estudiante_id = $_GET['estudiante'];
+            $nivel = $_GET['nivel'];
+            require_once 'views/usuario/cargar-notas.php';
+        } else {
+            header('location:' . base_url . 'usuario/listado_mis_estudiantes');
+        }
+    }
+
+    public function listado_mis_estudiantes()
+    {
+        Utils::isUser();
+        require_once 'views/usuario/listado-estudiantes.php';
     }
 }

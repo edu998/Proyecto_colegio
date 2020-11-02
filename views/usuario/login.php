@@ -1,4 +1,12 @@
 <form action="<?=base_url?>usuario/authentication" method="POST" class="form-signin">
+<?php if(isset($_SESSION['authentication']) && $_SESSION['authentication'] == 'failed'):?>
+<div class="alert alert-warning" role="alert">
+ <strong>Error, No estas Autenticado Para Hacer Esta Operacion!</strong>
+</div>
+<?php endif;?>
+<?php Utils::delete_session('authentication')?>
+
+
 <?php if(isset($_SESSION['error_login']) && $_SESSION['error_login'] == 'failed'):?>
 <div class="alert alert-danger " role="alert">
  <strong>Error!, Los Credenciales que Insertaste No Coinciden con los Datos que tenemos Registrados, Por favor, Introduce los Datos con los que te Inscribiste.</strong>
@@ -7,7 +15,7 @@
 <?php Utils::delete_session('error_login')?>
   <div class="text-center mb-4">
     <h1 class="h3 mb-3 font-weight-normal">Inicia Sesion</h1>
-    <p>Inicia con tu Cedula para Realizar los pagos, para que tus hijos puedan ser ingresados en el Institute Academy. <a href="https://caniuse.com/#feat=css-placeholder-shown">¿No te has inscrito?, Inscribite Aqui!</a></p>
+    <p>Inicia con tu Cedula para Realizar los pagos, para que tus hijos puedan ser ingresados en el Institute Academy. <a href="<?=base_url?>estudiante/elige_nivel">¿No te has inscrito?, Inscribite Aqui!</a></p>
   </div>
 
   <div class="form-label-group">
