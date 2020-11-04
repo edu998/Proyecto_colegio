@@ -25,6 +25,24 @@
     <script src="<?=base_url?>assets/js/jquery.js"></script>
     <script src="<?=base_url?>assets/js/popper.min.js"></script>
     <script src="<?=base_url?>assets/js/bootstrap.min.js"></script>
+    <!-- scripts scroll -->
+  
+    <script>
+        window.sr = ScrollReveal ();
+        sr.reveal('.navbar', {
+        duration: 2000,
+        origin: 'bottom'
+
+    });
+    sr.reveal('.content-center', {
+        duration: 2000,
+        origin: 'top',
+        distance: '300px'
+
+    });
+
+    </script>
+
 </body>
 
 </html>
