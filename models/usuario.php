@@ -154,6 +154,17 @@ class Usuario
         return $this;
     }
 
+    public function getOne()
+    {
+        $sql = "SELECT * FROM usuario WHERE id={$this->getId()}";
+        $usuario = $this->db->query($sql);
+        $result = false;
+        if ($usuario && $usuario->num_rows == 1) {
+            $result = $usuario->fetch_object();
+            return $result;
+        }
+    }
+
     public function getAll()
     {
         $sql = "SELECT * FROM usuario ORDER BY id DESC";
@@ -202,6 +213,32 @@ class Usuario
             $result = $usuario->fetch_object();
         }
 
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM usuario WHERE id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function update()
+    {
+
+        $sql = "UPDATE usuario SET cedula={$this->getCedula()}, primer_nombre='{$this->getPrimer_nombre()}', segundo_nombre='{$this->getSegundo_nombre()}', primer_apellido='{$this->getPrimer_apellido()}', segundo_apellido='{$this->getSegundo_apellido()}', telefono_celular={$this->getTelefono_celular()}, email='{$this->getEmail()}', sexo='{$this->getSexo()}', direccion='{$this->getDireccion()}' WHERE id={$this->getId()}";
+
+        $update = $this->db->query($sql);
+        
+        $result = false;
+        if ($update) {
+            $result = true;
+        }
         return $result;
     }
 }

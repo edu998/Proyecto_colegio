@@ -1,4 +1,10 @@
-<form action="<?= base_url ?>usuario/save" method="POST" class="form-signin">
+<?php if(isset($usuario_o) && is_object($usuario_o)):?>
+  <?php $url_action = base_url . 'usuario/save&id=' . $usuario_o->id?>
+<?php else:?>
+  <?php $url_action = base_url . 'usuario/save';?>
+<?php endif;?>
+
+<form action="<?= $url_action?>" method="POST" class="form-signin">
 <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'success') : ?>
     <div class="alert alert-success" role="alert">
       <strong>El Profesor se ha Registrado Correctamente, Puedes <a href="<?= base_url ?>usuario/gestion_profesor">Verlo Aqui!</a></strong>
@@ -26,58 +32,58 @@
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputCedula" name="cedula" class="form-control" placeholder="ejemplo: 12345678" autofocus>
+      <input type="text" id="inputCedula" name="cedula" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->cedula : ''?>" class="form-control" placeholder="ejemplo: 12345678" autofocus>
       <label for="inputCedula">ejemplo: 12345678</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'cedula') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputPrimerNombre" name="primer_nombre" class="form-control" placeholder="Primer Nombre">
+      <input type="text" id="inputPrimerNombre" name="primer_nombre" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->primer_nombre : ''?>" class="form-control" placeholder="Primer Nombre">
       <label for="inputPrimerNombre">Primer Nombre</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'primer_nombre') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputSegundoNombre" name="segundo_nombre" class="form-control" placeholder="Segundo Nombre">
+      <input type="text" id="inputSegundoNombre" name="segundo_nombre" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->segundo_nombre : ''?>" class="form-control" placeholder="Segundo Nombre">
       <label for="inputSegundoNombre">Segundo Nombre</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'segundo_nombre') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputPrimerApellido" name="primer_apellido" class="form-control" placeholder="Primer Apellido">
+      <input type="text" id="inputPrimerApellido" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->primer_apellido : ''?>" name="primer_apellido" class="form-control" placeholder="Primer Apellido">
       <label for="inputPrimerApellido">Primer Apellido</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'primer_apellido') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputSegundoApellido" name="segundo_apellido" class="form-control" placeholder="Segundo Apellido">
+      <input type="text" id="inputSegundoApellido" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->segundo_apellido : ''?>" name="segundo_apellido" class="form-control" placeholder="Segundo Apellido">
       <label for="inputSegundoApellido">Segundo Apellido</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'segundo_apellido') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputTelefonoCelular" name="telefono_celular" class="form-control" placeholder="ejemplo: 04142345678">
+      <input type="text" id="inputTelefonoCelular" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->telefono_celular : ''?>" name="telefono_celular" class="form-control" placeholder="ejemplo: 04142345678">
       <label for="inputTelefonoCelular">ejemplo: 04142345678</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'telefono_celular') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <input type="email" id="inputEmail" name="email" class="form-control" placeholder="email@email.com">
+      <input type="email" id="inputEmail" name="email" value="<?= isset($usuario_o) && is_object($usuario_o) ? $usuario_o->email : ''?>" class="form-control" placeholder="email@email.com">
       <label for="inputEmail">email@email.com</label>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'email') : '' ?>
     </div>
 
     <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccion el Sexo</label>
-      <select class="form-control p-0" name="sexo" id="exampleFormControlSelect1">
-        <option value="Masculino">Masculino</option>
-        <option value="Femenino">Femenino</option>
+      <select class="form-control p-0" name="sexo"  id="exampleFormControlSelect1">
+        <option value="Masculino" <?= isset($usuario_o) && $usuario_o->sexo == 'Masculino' ? 'selected' : ''?>>Masculino</option>
+        <option value="Femenino" <?= isset($usuario_o) && $usuario_o->sexo == 'Femenino' ? 'selected' : ''?>>Femenino</option>
       </select>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'sexo') : '' ?>
     </div>
 
     <div class="form-label-group">
-      <textarea id="inputDireccion" name="direccion" class="form-control" placeholder="Por Favor Inserta tu Direccion Mejor Resumida Posible.." autofocus></textarea>
+      <textarea id="inputDireccion" name="direccion"  class="form-control" placeholder="Por Favor Inserta tu Direccion Mejor Resumida Posible.."><?=isset($usuario_o) && is_object($usuario_o) ? $usuario_o->direccion : ''?></textarea>
       <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'direccion') : '' ?>
     </div>
 

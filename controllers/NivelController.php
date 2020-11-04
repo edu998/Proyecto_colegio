@@ -65,4 +65,22 @@ class NivelController{
 
         header('location: ' . base_url . 'nivel/create');
     }
+
+    public function delete(){
+        if(isset($_GET['id'])){
+            $nivel_id = $_GET['id'];
+            $nivel = new Nivel();
+            $nivel->setId($nivel_id);
+            $delete = $nivel->delete();
+
+            if($delete){
+                $_SESSION['nivel_d'] = 'success';
+            }else {
+                $_SESSION['nivel_d'] = 'failed';
+            }
+
+            header('location: ' . base_url . 'nivel/gestion_nivel');
+        }
+    }
+
 }

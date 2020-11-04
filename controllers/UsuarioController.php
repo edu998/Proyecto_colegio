@@ -165,18 +165,38 @@ class UsuarioController
                 $usuario->setEmail($email);
                 $usuario->setSexo($sexo);
                 $usuario->setDireccion($direccion);
-                $save = $usuario->save();
 
-                if ($save) {
-                    $_SESSION['usuario'] = 'success';
+                if (isset($_GET['id'])) {
+                    $usuario_id = $_GET['id'];
+                    $usuario->setId($usuario_id);
+                    $update = $usuario->update();
+
+                    if ($update) {
+                        $_SESSION['usuario'] = 'success';
+                        header('location: ' . base_url . 'usuario/edit&id=' . $usuario_id);
+                    } else {
+                        $_SESSION['usuario'] = 'failed';
+                        header('location: ' . base_url . 'usuario/edit&id=' . $usuario_id);
+                    }
                 } else {
-                    $_SESSION['usuario'] = 'failed';
+                    $save = $usuario->save();
+                    if ($save) {
+                        $_SESSION['usuario'] = 'success';
+                        header('location: ' . base_url . 'usuario/register');
+                    } else {
+                        $_SESSION['usuario'] = 'failed';
+                        header('location: ' . base_url . 'usuario/register');
+                    }
                 }
+
             } else {
                 $_SESSION['errors'] = $errors;
+                header('location: ' . base_url . 'usuario/register');
+                if (isset($_GET['id'])) {
+                    header('location: ' . base_url . 'usuario/edit&id=' . $_GET['id']);
+                }
             }
         }
-        header('location: ' . base_url . 'usuario/register');
     }
 
     public function login()
@@ -269,5 +289,37 @@ class UsuarioController
     {
         Utils::isUser();
         require_once 'views/usuario/listado-estudiantes.php';
+    }
+
+    public function edit()
+    {
+        if (isset($_GET['id'])) {
+            $usuario_id = $_GET['id'];
+            $usuario = new Usuario();
+            $usuario->setId($usuario_id);
+            $usuario_o = $usuario->getOne();
+
+            require_once 'views/usuario/register.php';
+        } else {
+            header('location: ' . base_url . 'usuario/gestion_profesor');
+        }
+    }
+
+    public function delete()
+    {
+        if (isset($_GET['id'])) {
+            $usuario_id = $_GET['id'];
+            $usuario = new Usuario();
+            $usuario->setId($usuario_id);
+            $delete = $usuario->delete();
+
+            if ($delete) {
+                $_SESSION['usuario'] = 'success';
+            } else {
+                $_SESSION['usuario'] = 'failed';
+            }
+
+            header('location: ' . base_url . 'usuario/gestion_profesor');
+        }
     }
 }

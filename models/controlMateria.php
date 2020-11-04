@@ -123,7 +123,7 @@ class ControlMateria
         $seccion = $this->seccion;
         $horario = $this->horario_id;
         $dia = $this->dia;
-        $sql = "SELECT materia_id, nivel_id, seccion, horario_id, dia FROM det_mat_prof WHERE horario_id=$horario AND materia_id=$materia AND nivel_id=$nivel AND seccion='$seccion'";
+        $sql = "SELECT usuario_id, materia_id, nivel_id, seccion, horario_id, dia FROM det_mat_prof WHERE horario_id=$horario AND materia_id=$materia AND nivel_id=$nivel AND seccion='$seccion'";
         $query = $this->db->query($sql);
         
         if($query && $query->num_rows != 0){

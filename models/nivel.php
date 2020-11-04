@@ -107,4 +107,17 @@ class Nivel
             return $result;
         }
     }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM nivel WHERE id={$this->getId()}";
+        $delete = $this->db->query($sql);
+
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
 }

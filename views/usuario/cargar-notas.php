@@ -7,7 +7,7 @@
         <?php endif; ?>
         <?php Utils::delete_session('nota') ?>
 
-
+        <?php if (isset($nivel) && !empty($nivel) && $nivel == 'Grado') : ?>
     <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">Cargar Notas de los Estudiantes</h1>
         <div class="alert alert-warning" role="alert">
@@ -30,7 +30,7 @@
         <input type="hidden" name="estudiante_id" value="<?= isset($estudiante_id) ? $estudiante_id : '' ?>" class="form-control">
     </div>
 
-    <?php if (isset($nivel) && !empty($nivel) && $nivel == 'Grado') : ?>
+    
         <div class="form-group">
             <label for="primera_nota">Seleccione la Primera Nota:</label>
             <select name="primera_nota" class="form-control p-0">
@@ -72,6 +72,12 @@
         </div>
 
     <?php elseif ($nivel == 'Año') : ?>
+        <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Cargar Notas de los Estudiantes</h1>
+        <div class="alert alert-warning" role="alert">
+            <strong class="text-center py-2" style="font-size: 17px;"> Por favor, debes Insertar las Notas de los Estudiantes, Despues de haberlas insertado se te mostrara una lista donde se vera la nota final de cada estudiante que seleccionaste..</strong>
+        </div>
+    </div>
         <div class="form-group">
             <label for="primera_nota">Seleccione la Primera Nota:</label>
             <select name="primera_nota" class="form-control p-0">

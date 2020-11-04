@@ -21,7 +21,7 @@
                 if ($profesor->role != 'admin') :
             ?>
                     <tr>
-                        <td> <a href="<?= base_url ?>usuario/detail&id=<?= $profesor->id ?>"><i class="fa fa-info-circle mr-2" style="font-size: 21px;" aria-hidden="true"></i></a> <?= $profesor->cedula ?></td>
+                        <td> <a style="font-size: 20px;" href="<?=base_url?>usuario/edit&id=<?=$profesor->id?>"><i class="fa fa-pencil-square-o text-warning mr-2" aria-hidden="true"></i></a> <a style="font-size: 20px;" href="<?=base_url?>usuario/delete&id=<?=$profesor->id?>"><i class="fa fa-trash-o text-danger mr-2" aria-hidden="true"></i></a> <a href="<?= base_url ?>usuario/detail&id=<?= $profesor->id ?>"><i class="fa fa-info-circle mr-2" style="font-size: 21px;" aria-hidden="true"></i></a> <?= $profesor->cedula ?></td>
                         <td><?= $profesor->primer_nombre ?></td>
                         <td><?= $profesor->primer_apellido ?></td>
                         <td><?= $profesor->telefono_celular ?></td>
