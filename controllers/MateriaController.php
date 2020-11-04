@@ -98,9 +98,9 @@ class MateriaController
             $materia_id = $_GET['id'];
             $materia = new Materia();
             $materia->setId($materia_id);
+            $delete_det = $materia->delete_det();
             $delete = $materia->delete();
-
-            if ($delete) {
+            if ($delete_det && $delete) {
                 $_SESSION['materia_d'] = 'success';
             } else {
                 $_SESSION['materia_d'] = 'failed';

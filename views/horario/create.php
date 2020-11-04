@@ -1,4 +1,10 @@
-<form action="<?=base_url?>horario/save" method="POST" class="form-signin">
+<?php if(isset($horario_o) && is_object($horario_o)):?>
+  <?php $url_action = base_url . 'horario/save&id=' . $horario_o->id?>
+<?php else:?>
+  <?php $url_action = base_url . 'horario/save';?>
+<?php endif;?>
+
+<form action="<?=$url_action?>" method="POST" class="form-signin">
 
 <?php if (isset($_SESSION['horario']) && $_SESSION['horario'] == 'success') : ?>
     <div class="alert alert-success" role="alert">
@@ -17,13 +23,13 @@
   </div>
 
   <div class="form-label-group">
-    <input type="time" id="inputHorario1" name="horario_desde" class="form-control" placeholder="¿Desde que Hora?" autofocus>
+    <input type="time" id="inputHorario1" name="horario_desde" value="<?=isset($horario_o) && is_object($horario_o) ? $horario_o->horario_desde : ''?>" class="form-control" placeholder="¿Desde que Hora?" autofocus>
     <label for="inputHorario1">¿Desde que Hora?</label>
     <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'horario_desde') : ''?>
   </div>
 
   <div class="form-label-group">
-    <input type="time" id="inputHorario2" name="horario_hasta" class="form-control" placeholder="¿Hasta que Hora?">
+    <input type="time" id="inputHorario2" name="horario_hasta" value="<?=isset($horario_o) && is_object($horario_o) ? $horario_o->horario_hasta : ''?>" class="form-control" placeholder="¿Hasta que Hora?">
     <label for="inputHorario2">¿Hasta que Hora?</label>
     <?php echo isset($_SESSION['errors']) ? Utils::showError($_SESSION['errors'], 'horario_hasta') : ''?>
   </div>

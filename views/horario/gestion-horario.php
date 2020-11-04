@@ -2,6 +2,19 @@
     <div class="container mt-5">
         <h2 class="py-4 d-inline-block mt-5"># Gestion de Horarios <a href="<?= base_url ?>horario/create" style="font-size: 17px;" class="btn btn-primary btn-sm ml-2">Registrar Horarios</a></h2>
 
+        <h5 class="d-block w-50 pb-4"><strong>NOTA:</strong> Los Horarios solo se Podran Borrar si y solo si no tienen ningun profesor o materia o seccion asignada de lo contrario se eliminira ambos registros y no aparecera tanto en el control de materias como en gestion de horario, Si editas en ambas registros apareceran con el nombre Actualizado.</h5>
+
+        <?php if (isset($_SESSION['horario']) && $_SESSION['horario'] == 'success') : ?>
+        <div class="alert alert-success w-50 mx-auto" role="alert">
+            <strong>Se ha Borrado Correctamente</strong>
+        </div>
+    <?php elseif(isset($_SESSION['horario']) && $_SESSION['horario'] != 'success'): ?>
+        <div class="alert alert-danger w-50 mx-auto" role="alert">
+            <strong>Error!, Al Borrar este Horario..</strong>
+        </div>
+        <?php endif;?>
+    <?php Utils::delete_session('horario') ?>
+
         <table class="table table-striped text-center">
             <tr class="thead-dark">
                 <th scope="col">#</th>
@@ -10,7 +23,7 @@
 
             <?php while ($horario = $horarios->fetch_object()) : ?>
                 <tr>
-                    <td><?= $horario->id ?></td>
+                    <td> <a style="font-size: 20px;" href="<?=base_url?>horario/edit&id=<?=$horario->id?>"><i class="fa fa-pencil-square-o text-warning mr-2" aria-hidden="true"></i></a> <a style="font-size: 20px;" href="<?=base_url?>horario/delete&id=<?=$horario->id?>"><i class="fa fa-trash-o text-danger mr-2" aria-hidden="true"></i></a> <?= $horario->id ?></td>
 
                     <td><?= isset($horario->horario_desde) && $horario->horario_desde < 12 ? $horario->horario_desde . ' ' . 'am' : $horario->horario_desde . ' ' . 'pm' ?> - <?= isset($horario->horario_hasta) && $horario->horario_hasta < 12 ? $horario->horario_hasta . ' ' . 'am' : $horario->horario_hasta . ' ' . 'pm'  ?> </td>
 

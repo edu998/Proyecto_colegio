@@ -37,15 +37,60 @@ class ControlMController
             $controlM->setHorario_id($horario_id);
             $controlM->setSeccion($seccion);
             $controlM->setDia($dia);
-            $save = $controlM->save();
 
-            if ($save) {
+            if (isset($_GET['id'])) {
+                $controlM_id = $_GET['id'];
+                $controlM->setId($controlM_id);
+                $update = $controlM->update();
+
+                if ($update) {
+                    $_SESSION['control_m'] = 'success';
+                    header('location: ' . base_url . 'controlm/edit&id=' . $controlM_id);
+                } else {
+                    $_SESSION['control_m'] = 'failed';
+                    header('location: ' . base_url . 'controlm/edit&id=' . $controlM_id);
+                }
+            } else {
+                $save = $controlM->save();
+                if ($save) {
+                    $_SESSION['control_m'] = 'success';
+                    header('location: ' . base_url . 'controlm/asignar_materia');
+                } else {
+                    $_SESSION['control_m'] = 'failed';
+                    header('control_m: ' . base_url . 'controlm/asignar_materia');
+                }
+            }
+        }
+    }
+
+    public function edit()
+    {
+        if (isset($_GET['id'])) {
+            $controlM_id = $_GET['id'];
+            $controlM = new ControlMateria();
+            $controlM->setId($controlM_id);
+            $controlm_o = $controlM->getOne();
+
+            require_once 'views/materia/asignar.php';
+        } else {
+            header('location: ' . base_url . 'controlm/control_materias');
+        }
+    }
+
+    public function delete()
+    {
+        if (isset($_GET['id'])) {
+            $controlM_id = $_GET['id'];
+            $controlM = new ControlMateria();
+            $controlM->setId($controlM_id);
+            $delete = $controlM->delete();
+            if ($delete) {
                 $_SESSION['control_m'] = 'success';
             } else {
                 $_SESSION['control_m'] = 'failed';
             }
-        }
 
-        header('location: ' . base_url . 'controlm/asignar_materia');
+            header('location: ' . base_url . 'controlm/control_materias');
+        }
     }
 }

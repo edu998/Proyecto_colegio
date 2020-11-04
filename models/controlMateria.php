@@ -136,13 +136,26 @@ class ControlMateria
     }
 
     public function getSeccionByProfesor(){
-        $sql = "SELECT u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id ORDER BY det.id DESC";
+        $sql = "SELECT det.id AS 'id', u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id ORDER BY det.id DESC";
 
         $profesores = $this->db->query($sql);
 
         $result = false;
         if($profesores && $profesores->num_rows >= 1){
             $result = $profesores;
+        }
+
+        return $result;
+    }
+
+    public function getOne(){
+    $sql = "SELECT det.id AS 'id', u.id AS 'usuario_id', n.id AS 'nivel_id', m.id AS 'materia_id', h.id AS 'horario_id', u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id WHERE det.id={$this->getId()}";
+
+        $profesor = $this->db->query($sql);
+
+        $result = false;
+        if($profesor && $profesor->num_rows == 1){
+            $result = $profesor->fetch_object();
         }
 
         return $result;
@@ -169,6 +182,29 @@ class ControlMateria
         $result = false;
         if($estudiantes && $estudiantes->num_rows >= 1){
             $result = $estudiantes;
+        }
+
+        return $result;
+    }
+
+    public function update()
+    {
+        $sql = "UPDATE det_mat_prof SET usuario_id={$this->getUsuario_id()}, materia_id={$this->getMateria_id()}, nivel_id={$this->getNivel_id()}, horario_id={$this->getHorario_id()}, seccion='{$this->getSeccion()}', dia='{$this->getDia()}'  WHERE id={$this->getId()}";
+        $update = $this->db->query($sql);
+        $result = false;
+        if ($update) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM det_mat_prof WHERE id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
         }
 
         return $result;

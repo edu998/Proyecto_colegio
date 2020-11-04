@@ -1,6 +1,19 @@
 <div class="container mt-5">
     <h2 class="py-4 d-inline-block mt-5"># Gestion de Profesores <a href="<?= base_url ?>usuario/register" style="font-size: 17px;" class="btn btn-primary btn-sm ml-2">Registrar Profesor</a></h2>
 
+    <h5 class="d-block w-50 pb-4"><strong>NOTA:</strong> Los Profesores solo se Podran Borrar si y solo si no tienen ninguna materia asignada de lo contrario se eliminira ambos registros y no aparecera tanto en el control de materias como en gestion de profesores, Si editas en ambas registros apareceran con el nombre Actualizado.</h5>
+
+    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == 'success') : ?>
+        <div class="alert alert-success w-50 mx-auto" role="alert">
+            <strong>Se ha Borrado Correctamente</strong>
+        </div>
+    <?php elseif(isset($_SESSION['usuario']) && $_SESSION['usuario'] != 'success'): ?>
+        <div class="alert alert-danger w-50 mx-auto" role="alert">
+            <strong>Error!, Al Borrar este Usuario..</strong>
+        </div>
+        <?php endif;?>
+    <?php Utils::delete_session('usuario') ?>
+
     <?php if (isset($_SESSION['not_found']) && $_SESSION['not_found'] == 'failed') : ?>
         <div class="alert alert-danger w-50 mx-auto" role="alert">
             <strong>Error!, El usuario No existe..</strong>

@@ -311,9 +311,10 @@ class UsuarioController
             $usuario_id = $_GET['id'];
             $usuario = new Usuario();
             $usuario->setId($usuario_id);
+            $delete_det = $usuario->delete_det();
             $delete = $usuario->delete();
 
-            if ($delete) {
+            if ($delete && $delete_det) {
                 $_SESSION['usuario'] = 'success';
             } else {
                 $_SESSION['usuario'] = 'failed';

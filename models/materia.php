@@ -85,6 +85,18 @@ class Materia
         return $result;
     }
 
+    public function delete_det()
+    {
+        $sql = "DELETE det.* FROM det_mat_prof det JOIN materia m ON det.materia_id = m.id WHERE m.id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
     public function update()
     {
         $sql = "UPDATE materia SET nombre='{$this->getNombre()}' WHERE id={$this->getId()}";

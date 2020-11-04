@@ -62,6 +62,17 @@ class Horario{
         return $result;
     }
 
+    public function getOne()
+    {
+        $sql = "SELECT * FROM horario WHERE id={$this->getId()}";
+        $horario = $this->db->query($sql);
+        $result = false;
+        if ($horario && $horario->num_rows == 1) {
+            $result = $horario->fetch_object();
+            return $result;
+        }
+    }
+
     public function getAll(){
         $sql = "SELECT * FROM horario ORDER BY id ASC";
         $horarios = $this->db->query($sql);
@@ -70,6 +81,41 @@ class Horario{
             $result = $horarios;
             return $result;
         }
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM horario WHERE id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function delete_det()
+    {
+        $sql = "DELETE det.* FROM det_mat_prof det JOIN horario h ON det.horario_id = h.id WHERE h.id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function update()
+    {
+        $sql = "UPDATE horario SET horario_desde='{$this->getHorario_desde()}', horario_hasta='{$this->getHorario_hasta()}' WHERE id={$this->getId()}";
+        $update = $this->db->query($sql);
+        $result = false;
+        if ($update) {
+            $result = true;
+        }
+        return $result;
     }
 
 }

@@ -228,11 +228,22 @@ class Usuario
         return $result;
     }
 
+    public function delete_det()
+    {
+        $sql = "DELETE det.* FROM det_mat_prof det JOIN usuario u ON det.usuario_id = u.id WHERE u.id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
     public function update()
     {
 
         $sql = "UPDATE usuario SET cedula={$this->getCedula()}, primer_nombre='{$this->getPrimer_nombre()}', segundo_nombre='{$this->getSegundo_nombre()}', primer_apellido='{$this->getPrimer_apellido()}', segundo_apellido='{$this->getSegundo_apellido()}', telefono_celular={$this->getTelefono_celular()}, email='{$this->getEmail()}', sexo='{$this->getSexo()}', direccion='{$this->getDireccion()}' WHERE id={$this->getId()}";
-
         $update = $this->db->query($sql);
         
         $result = false;

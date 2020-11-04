@@ -1,5 +1,17 @@
 <div class="container mt-5">
     <h2 class="py-4 d-inline-block mt-5"># Control de Materias <a href="<?= base_url ?>controlm/asignar_materia" style="font-size: 17px;" class="btn btn-primary btn-sm ml-2">Asignar Materias a Profesores</a></h2>
+
+    <?php if (isset($_SESSION['control_m']) && $_SESSION['control_m'] == 'success') : ?>
+        <div class="alert alert-success w-50 mx-auto" role="alert">
+            <strong>Se ha Borrado Correctamente</strong>
+        </div>
+    <?php elseif(isset($_SESSION['control_m']) && $_SESSION['control_m'] != 'success'): ?>
+        <div class="alert alert-danger w-50 mx-auto" role="alert">
+            <strong>Error!, Al Borrar este registro..</strong>
+        </div>
+        <?php endif;?>
+    <?php Utils::delete_session('control_m') ?>
+
     <table class="table table-striped text-center">
         <tr class="thead-dark">
             <th scope="col">Cedula</th>
@@ -14,7 +26,7 @@
         <?php if (isset($materias_p) && !empty($materias_p)) : ?>
             <?php while ($materia_p = $materias_p->fetch_object()) : ?>
                 <tr>
-                    <td><?= $materia_p->cedula ?></td>
+                    <td> <a style="font-size: 20px;" href="<?=base_url?>controlm/edit&id=<?=$materia_p->id?>"><i class="fa fa-pencil-square-o text-warning mr-2" aria-hidden="true"></i></a> <a style="font-size: 20px;" href="<?=base_url?>controlm/delete&id=<?=$materia_p->id?>"><i class="fa fa-trash-o text-danger mr-2" aria-hidden="true"></i></a> <?= $materia_p->cedula ?></td>
                     <td><?= $materia_p->profesor ?></td>
                     <td><?= $materia_p->materia ?></td>
                     <td><?= $materia_p->nivel ?></td>

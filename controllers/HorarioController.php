@@ -45,16 +45,67 @@ class HorarioController{
                 $horario->setHorario_desde($horario_desde);
                 $horario->setHorario_hasta($horario_hasta);
 
-                $save = $horario->save();
-                if($save){
-                    $_SESSION['horario'] = 'success';
-                }else {
-                    $_SESSION['horario'] = 'failed';
+                if (isset($_GET['id'])) {
+                    $horario_id = $_GET['id'];
+                    $horario->setId($horario_id);
+                    $update = $horario->update();
+
+                    if ($update) {
+                        $_SESSION['horario'] = 'success';
+                        header('location: ' . base_url . 'horario/edit&id=' . $horario_id);
+                    } else {
+                        $_SESSION['horario'] = 'failed';
+                        header('location: ' . base_url . 'horario/edit&id=' . $horario_id);
+                    }
+                } else {
+                    $save = $horario->save();
+                    if ($save) {
+                        $_SESSION['horario'] = 'success';
+                        header('location: ' . base_url . 'horario/create');
+                    } else {
+                        $_SESSION['horario'] = 'failed';
+                        header('location: ' . base_url . 'horario/create');
+                    }
                 }
             }else {
                 $_SESSION['errors'] = $errors;
+                header('location: ' . base_url . 'horario/create');
+                if (isset($_GET['id'])) {
+                    header('location: ' . base_url . 'horario/edit&id=' . $_GET['id']);
+                }
             }
         }
-        header('location: ' . base_url . 'horario/create');
+    }
+
+    public function edit()
+    {
+        if (isset($_GET['id'])) {
+            $horario_id = $_GET['id'];
+            $horario = new Horario();
+            $horario->setId($horario_id);
+            $horario_o = $horario->getOne();
+
+            require_once 'views/horario/create.php';
+        } else {
+            header('location: ' . base_url . 'horario/gestion_horario');
+        }
+    }
+
+    public function delete()
+    {
+        if (isset($_GET['id'])) {
+            $horario_id = $_GET['id'];
+            $horario = new Horario();
+            $horario->setId($horario_id);
+            $delete_det = $horario->delete_det();
+            $delete = $horario->delete();
+            if ($delete && $delete_det) {
+                $_SESSION['horario'] = 'success';
+            } else {
+                $_SESSION['horario'] = 'failed';
+            }
+
+            header('location: ' . base_url . 'horario/gestion_horario');
+        }
     }
 }
