@@ -1,4 +1,5 @@
 <footer class="bgDark">
+
         <div class="container">
             <h3 class="text-white text-center text-capitalize
             ">Institute Academy | INAC</h3>
@@ -9,6 +10,7 @@
                 <li class="list-inline-item footer-menu"><a href="#pricing">Modulos</a></li>
                 <li class="list-inline-item footer-menu"><a href="#testimonial">Opiniones</a></li>
             </ul>
+       
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#"><img src="<?=base_url?>assets/images/instagram.svg" class="img-fluid"></a></li>
                 <li class="list-inline-item"><a href="#"><img src="<?=base_url?>assets/images/twitter.svg" class="img-fluid"></a></li>
@@ -18,6 +20,7 @@
             </ul>
             <small>©2020 Institute Academy | INAC</small>
         </div>
+        
     </footer>
 
     <!-- Optional JavaScript -->
@@ -25,13 +28,16 @@
     <script src="<?=base_url?>assets/js/jquery.js"></script>
     <script src="<?=base_url?>assets/js/popper.min.js"></script>
     <script src="<?=base_url?>assets/js/bootstrap.min.js"></script>
+
+     
+     
     <!-- scripts scroll -->
   
     <script>
         window.sr = ScrollReveal ();
         sr.reveal('.navbar', {
         duration: 2000,
-        origin: 'bottom'
+        origin: 'Bottom'
 
     });
     sr.reveal('.content-center', {
@@ -40,6 +46,20 @@
         distance: '300px'
 
     });
+    sr.reveal('.member-container', {
+        duration: 2000,
+        origin: 'left',
+        distance: '300px'
+
+    });
+    sr.reveal('.btn-dark', {
+        duration: 4000,
+        origin: 'bottom',
+        delay: 1000
+
+    });
+    
+    
 
     </script>
 
