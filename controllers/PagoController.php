@@ -4,6 +4,47 @@ require_once 'models/pago.php';
 
 class PagoController
 {
+    
+
+    public function buscador_fecha()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $pago = new Pago();
+            $pagos = $pago->getControlPagos($nombre);
+            if ($pagos) {
+                require_once 'views/pago/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'pago/control_pagos');
+            }
+        } else {
+            header('location: ' . base_url . 'pago/control_pagos');
+        }
+    }
+
+    public function buscador_pago()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $pago = new Pago();
+            $pagos = $pago->getControlPagos($nombre);
+            if ($pagos) {
+                require_once 'views/pago/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'pago/control_pagos');
+            }
+        } else {
+            header('location: ' . base_url . 'pago/control_pagos');
+        }
+    }
 
     public function control_pagos(){
         Utils::isAdmin();
@@ -158,5 +199,59 @@ class PagoController
             }
         }
         header('location: ' . base_url . 'pago/pago_transferencia&tipo_pago=' . $tipo_pago . '&nombre_pago=' . $nombre_pago);
+    }
+
+    public function detail()
+    {
+        Utils::isAdmin();
+        if (isset($_GET['id'])) {
+            $pago_id = $_GET['id'];
+
+            $pagos = new Pago();
+            $pagos->setId($pago_id);
+            $pago = $pagos->getOne();
+
+            require_once 'views/pago/detail.php';
+        } else {
+            header('location:' . base_url . 'pago/control_pagos');
+        }
+    }
+
+    public function change(){
+        if(isset($_POST)){
+            $c_pago_id = isset($_POST['c_pago_id']) ? $_POST['c_pago_id'] : false;
+            $status = isset($_POST['status']) ? $_POST['status'] : false;
+
+            $pago = new Pago();
+            $pago->setStatus($status);
+            $pago->setId($c_pago_id);
+            $update = $pago->edit_status();
+
+            if($update){
+                $_SESSION['status'] = 'success';
+            }else {
+                $_SESSION['status'] = 'failed';
+            }
+            header('location: ' . base_url . 'pago/detail&id=' . $c_pago_id);
+        }else {
+            header('location:' . base_url . 'pago/control_pagos');
+        }
+    }
+
+    public function delete()
+    {
+        if (isset($_GET['id'])) {
+            $pago_id = $_GET['id'];
+            $pago = new Pago();
+            $pago->setId($pago_id);
+            $delete = $pago->delete();
+            if ($delete) {
+                $_SESSION['delete_p'] = 'success';
+            } else {
+                $_SESSION['delete_p'] = 'failed';
+            }
+
+            header('location: ' . base_url . 'pago/control_pagos');
+        }
     }
 }

@@ -4,6 +4,26 @@ require_once 'models/horario.php';
 
 class HorarioController{
 
+    public function buscador_horario()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $horario = new Horario();
+            $horarios = $horario->getAllBySearch($nombre);
+            if ($horarios) {
+                require_once 'views/horario/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'horario/gestion_horario');
+            }
+        } else {
+            header('location: ' . base_url . 'materia/gestion_horario');
+        }
+    }
+
     public function gestion_horario(){
         Utils::isAdmin();
         $horario = new Horario();

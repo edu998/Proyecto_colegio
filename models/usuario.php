@@ -176,6 +176,17 @@ class Usuario
         }
     }
 
+    public function getAllBySearch($buscador)
+    {
+        $sql = "SELECT * FROM usuario WHERE primer_nombre LIKE '%$buscador%' OR primer_apellido LIKE '%$buscador%' OR segundo_nombre LIKE '%$buscador%' OR segundo_apellido LIKE '%$buscador%' OR cedula LIKE '%$buscador%'";
+        $usuarios = $this->db->query($sql);
+        $result = false;
+        if ($usuarios && $usuarios->num_rows >= 1) {
+            $result = $usuarios;
+            return $result;
+        }
+    }
+
     public function save()
     {
         $sql = "INSERT INTO usuario VALUES(NULL, {$this->getCedula()}, 'user', '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";

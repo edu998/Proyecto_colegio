@@ -144,15 +144,31 @@ class Nota
         return $result;
     }
 
-    public function getAll()
+    public function getAll($buscador = null)
     {
-        $sql = "SELECT e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ', e.primer_apellido) AS 'estudiante', m.nombre AS 'materia', n.primera_nota AS 'primera', n.segunda_nota AS 'segunda', n.tercera_nota AS 'tercera', n.cuarta_nota AS 'cuarta', (n.primera_nota + n.segunda_nota + n.tercera_nota + n.cuarta_nota)/4 AS 'nota_final' FROM nota n INNER JOIN estudiante e ON n.estudiante_id = e.id INNER JOIN materia m ON n.materia_id = m.id WHERE n.usuario_id = {$this->getUsuario_id()} ORDER BY n.id DESC";
+        $sql = "SELECT n.id AS 'id', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ', e.primer_apellido) AS 'estudiante', m.nombre AS 'materia', n.primera_nota AS 'primera', n.segunda_nota AS 'segunda', n.tercera_nota AS 'tercera', n.cuarta_nota AS 'cuarta', (n.primera_nota + n.segunda_nota + n.tercera_nota + n.cuarta_nota)/4 AS 'nota_final' FROM nota n INNER JOIN estudiante e ON n.estudiante_id = e.id INNER JOIN materia m ON n.materia_id = m.id WHERE n.usuario_id = {$this->getUsuario_id()} ORDER BY n.id DESC";
+
+        if($buscador != null){
+            $sql = "SELECT n.id AS 'id', e.cedula AS 'cedula', CONCAT(e.primer_nombre, ' ', e.primer_apellido) AS 'estudiante', m.nombre AS 'materia', n.primera_nota AS 'primera', n.segunda_nota AS 'segunda', n.tercera_nota AS 'tercera', n.cuarta_nota AS 'cuarta', (n.primera_nota + n.segunda_nota + n.tercera_nota + n.cuarta_nota)/4 AS 'nota_final' FROM nota n INNER JOIN estudiante e ON n.estudiante_id = e.id INNER JOIN materia m ON n.materia_id = m.id WHERE e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR m.nombre LIKE '%$buscador%'";
+        }
 
         $estudiantes_nota = $this->db->query($sql);
 
         $result = false;
         if ($estudiantes_nota && $estudiantes_nota->num_rows >= 1) {
             $result = $estudiantes_nota;
+        }
+
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM nota WHERE id={$this->getId()}";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
         }
 
         return $result;

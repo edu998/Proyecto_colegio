@@ -5,6 +5,27 @@ require_once 'models/materia.php';
 class MateriaController
 {
 
+
+    public function buscador_materia()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $materia = new Materia();
+            $materias = $materia->getAllBySearch($nombre);
+            if ($materias) {
+                require_once 'views/materia/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'materia/gestion_materias');
+            }
+        } else {
+            header('location: ' . base_url . 'materia/gestion_materias');
+        }
+    }
+
     public function gestion_materias()
     {
         Utils::isAdmin();
@@ -75,7 +96,6 @@ class MateriaController
                 }
             }
         }
-        
     }
 
     public function edit()

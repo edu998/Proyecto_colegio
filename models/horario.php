@@ -83,6 +83,17 @@ class Horario{
         }
     }
 
+    public function getAllBySearch($buscador)
+    {
+        $sql = "SELECT * FROM horario WHERE horario_desde LIKE '%$buscador%' OR horario_hasta LIKE '%$buscador%'";
+        $horarios = $this->db->query($sql);
+        $result = false;
+        if ($horarios && $horarios->num_rows >= 1) {
+            $result = $horarios;
+            return $result;
+        }
+    }
+
     public function delete()
     {
         $sql = "DELETE FROM horario WHERE id={$this->getId()}";

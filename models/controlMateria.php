@@ -135,8 +135,23 @@ class ControlMateria
         return $result;
     }
 
-    public function getSeccionByProfesor(){
+    public function getAllBySearch($buscador, $seccion)
+    {
+        $sql = "SELECT det.id AS 'id', u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id WHERE det.nivel_id=$buscador AND det.seccion='$seccion'";
+        $niveles = $this->db->query($sql);
+        $result = false;
+        if ($niveles && $niveles->num_rows >= 1) {
+            $result = $niveles;
+            return $result;
+        }
+    }
+
+    public function getSeccionByProfesor($buscador = null){
         $sql = "SELECT det.id AS 'id', u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id ORDER BY det.id DESC";
+
+        if($buscador != null){
+            $sql = "SELECT det.id AS 'id', u.cedula AS 'cedula', CONCAT(u.primer_nombre, ' ', u.primer_apellido) AS 'profesor', m.nombre AS 'materia', CONCAT(n.numero_tipo, ' ', n.tipo ) AS 'nivel', det.seccion AS 'seccion', h.horario_desde AS 'horario_desde', h.horario_hasta AS 'horario_hasta', det.dia FROM det_mat_prof det INNER JOIN usuario u ON det.usuario_id = u.id INNER JOIN materia m ON det.materia_id = m.id INNER JOIN nivel n ON det.nivel_id = n.id INNER JOIN horario h ON det.horario_id = h.id WHERE u.cedula LIKE '%$buscador%' OR u.primer_nombre LIKE '%$buscador%' OR u.primer_apellido LIKE '%$buscador%' OR m.nombre LIKE '%$buscador%' OR det.nivel_id LIKE '%$buscador%' OR det.seccion LIKE '%$buscador%' OR h.horario_desde LIKE '%$buscador%' OR h.horario_hasta LIKE '%$buscador%' OR det.dia LIKE '%$buscador%'";
+        }
 
         $profesores = $this->db->query($sql);
 

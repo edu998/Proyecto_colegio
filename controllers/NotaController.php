@@ -3,6 +3,27 @@ require_once 'models/nota.php';
 
 class NotaController{
 
+    public function buscador()
+    {
+        Utils::isUser();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $nota = new Nota();
+            $notas = $nota->getAll($nombre);
+            
+            if ($notas) {
+                require_once 'views/materia/search_nota.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'nota/gestion_notas');
+            }
+        } else {
+            header('location: ' . base_url . 'nota/gestion_notas');
+        }
+    }
+
     public function save(){
         Utils::isUser();
         if(isset($_POST)){
@@ -42,5 +63,24 @@ class NotaController{
         $nota->setUsuario_id($usuario_id);
         $notas = $nota->getAll();
         require_once 'views/usuario/gestion-notas.php';
+    }
+
+    public function delete()
+    {
+        Utils::isUser();
+        if (isset($_GET['id'])) {
+            $nota_id = $_GET['id'];
+            $nota = new Nota();
+            $nota->setId($nota_id);
+            $delete = $nota->delete();
+
+            if ($delete) {
+                $_SESSION['delete_n'] = 'success';
+            } else {
+                $_SESSION['delete_n'] = 'failed';
+            }
+
+            header('location: ' . base_url . 'nota/gestion_notas');
+        }
     }
 }

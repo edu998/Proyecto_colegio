@@ -1,7 +1,5 @@
-<?php if (isset($materias_p) && !empty($materias_p)) : ?>
 <div class="container mt-5">
-    <h2 class="py-4 d-inline-block mt-5"># Control de Materias <a href="<?= base_url ?>controlm/asignar_materia" style="font-size: 17px;" class="btn btn-primary btn-sm ml-2">Asignar Materias a Profesores</a></h2>
-    
+    <h2 class="py-4 d-inline-block mt-5"># Control de Materias <a href="<?= base_url ?>controlm/control_materias" style="font-size: 17px;" class="btn btn-primary btn-sm ml-2">Ver todo el Registro</a></h2>
     <div class="d-flex justify-content-around mb-3">
     <form class="form-inline pb-3 my-lg-0" action="<?=base_url?>controlm/buscador_nivel" method="POST">
     <h4>Ordenar por:</h4>
@@ -17,7 +15,7 @@
                 <?php endif; ?>
             </select>
         </div>
-        
+
         <div class="form-group ml-3">
             <label for="exampleFormControlSelect4">Secciones:</label>
             <select class="form-control p-0  ml-1" name="seccion" id="exampleFormControlSelect4">
@@ -28,10 +26,9 @@
 
       <button class="btn btn-primary my-2 my-sm-0 p-2 ml-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></button>
     </form>
-    
 
-    <form class="form-inline pb-3 my-lg-0" action="<?=base_url?>controlm/buscador" method="POST">
-      <input class="form-control mr-sm-2 " style="font-size: 16px;" type="search" name="nombre" placeholder="Profesor o Materia" aria-label="Search">
+    <form class="form-inline pb-3 my-lg-0" action="<?=base_url?>controlm/buscador_profesor" method="POST">
+      <input class="form-control mr-sm-2" style="font-size: 16px;" type="search" name="nombre" placeholder="Profesor o Materia" aria-label="Search">
       <button class="btn btn-primary my-2 my-sm-0 p-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i style="border-radius: 500px;" class="fa fa-search"></i></button>
     </form>
 
@@ -39,9 +36,7 @@
       <input class="form-control mr-sm-2" style="font-size: 16px;" type="time" name="nombre" placeholder="Buscar Por Horario" aria-label="Search">
       <button class="btn btn-primary my-2 my-sm-0 p-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i style="border-radius: 500px;" class="fa fa-search"></i></button>
     </form>
-
     </div>
-
     <?php if (isset($_SESSION['control_m']) && $_SESSION['control_m'] == 'success') : ?>
         <div class="alert alert-success w-50 mx-auto" role="alert">
             <strong>Se ha Borrado Correctamente</strong>
@@ -52,13 +47,6 @@
         </div>
         <?php endif;?>
     <?php Utils::delete_session('control_m') ?>
-
-    <?php if(isset($_SESSION['search_m']) && $_SESSION['search_m'] == 'failed'): ?>
-        <div class="alert alert-danger w-50 mx-auto" role="alert">
-            <strong>Error!, No se encuentran resultados con lo que deseas Buscar..</strong>
-        </div>
-        <?php endif;?>
-    <?php Utils::delete_session('search_m') ?>
 
     <table class="table table-striped text-center">
         <tr class="thead-dark">
@@ -71,7 +59,7 @@
             <th scope="col">Horario</th>
             
         </tr>
-       
+        <?php if (isset($materias_p) && !empty($materias_p)) : ?>
             <?php while ($materia_p = $materias_p->fetch_object()) : ?>
                 <tr>
                     <td> <a style="font-size: 20px;" href="<?=base_url?>controlm/edit&id=<?=$materia_p->id?>"><i class="fa fa-pencil-square-o text-warning mr-2" aria-hidden="true"></i></a> <a style="font-size: 20px;" href="<?=base_url?>controlm/delete&id=<?=$materia_p->id?>"><i class="fa fa-trash-o text-danger mr-2" aria-hidden="true"></i></a> <?= $materia_p->cedula ?></td>
@@ -83,22 +71,7 @@
                      <td><?= isset($materia_p->horario_desde) && $materia_p->horario_desde < 12 ? $materia_p->horario_desde . ' ' . 'am' : $materia_p->horario_desde . ' ' . 'pm' ?> - <?= isset($materia_p->horario_hasta) && $materia_p->horario_hasta < 12 ? $materia_p->horario_hasta . ' ' . 'am' : $materia_p->horario_hasta . ' ' . 'pm'  ?> </td>
                 </tr>
             <?php endwhile; ?>
-       
+        <?php endif; ?>
 
     </table>
 </div>
-<?php else : ?>
-    <div class="card text-center" style="margin-top: 150px;">
-        <div class="card-header" style="font-size: 25px;">
-            Registros Vacios..
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Asignacion de Materias Con Profesores </h5>
-            <p class="card-text py-3">Asigna las Materias a Varios Profesores para el Institute Academy, Para registrar los datos debes presionar en el boton de Abajo!</p>
-            <a href="<?= base_url ?>materia/asignar" class="btn btn-primary">Asignar Materias Aqui!</a>
-        </div>
-        <div class="card-footer text-muted">
-            &copy; 2020 Institute Academy | INAC
-        </div>
-    </div>
-<?php endif; ?>

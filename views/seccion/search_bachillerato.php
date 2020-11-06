@@ -1,6 +1,6 @@
-<?php if (isset($secciones) && !empty($secciones)) : ?>
 <div class="container pt-5">
-    <h2 class="py-4 mt-5 text-center">Bachillerato</h2>
+    <h2 class="py-4 mt-5 text-center">Bachillerato <a href="<?=base_url?>seccion/gestion_bachillerato" class="btn btn-primary">Ver Todos</a></h2>
+
     <div class="d-flex justify-content-center mb-3">
     <form class="form-inline pb-3 my-lg-0" action="<?= base_url ?>seccion/buscador_seccion" method="POST">
         <h4>Ordenar por:</h4>
@@ -35,34 +35,6 @@
       <button class="btn btn-primary my-2 my-sm-0 p-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i style="border-radius: 500px;" class="fa fa-search"></i></button>
     </form>
     </div>
-    <?php if (isset($_SESSION['seccion']) && $_SESSION['seccion'] == 'success') : ?>
-        <div class="alert alert-success w-50 mx-auto" role="alert">
-            <strong>Se le ha Asignado la Seccion Al estudiante Correctamente!</strong>
-        </div>
-    <?php elseif (isset($_SESSION['seccion']) && $_SESSION['seccion'] != 'success') : ?>
-        <div class="alert alert-danger w-50 mx-auto" role="alert">
-            <strong>Error!, Al Asignar esta seccion</strong>
-        <?php endif; ?>
-        </div>
-        <?php Utils::delete_session('seccion') ?>
-
-        <?php if (isset($_SESSION['estado']) && $_SESSION['estado'] == 'success') : ?>
-            <div class="alert alert-success w-50 mx-auto" role="alert">
-                <strong>Se ha Cambiado la Seccion Correctamente</strong>
-            </div>
-        <?php elseif (isset($_SESSION['estado']) && $_SESSION['estado'] != 'success') : ?>
-            <div class="alert alert-danger w-50 mx-auto" role="alert">
-                <strong>Error!, al Cambiar la Seccion..</strong>
-            <?php endif; ?>
-            </div>
-            <?php Utils::delete_session('estado') ?>
-
-            <?php if (isset($_SESSION['search_m']) && $_SESSION['search_m'] == 'failed') : ?>
-                <div class="alert alert-danger w-50 mx-auto" role="alert">
-                    <strong>Error!, No se encuentran resultados con lo que deseas Buscar..</strong>
-                </div>
-            <?php endif; ?>
-            <?php Utils::delete_session('search_m') ?>
 
             <table class="table table-striped text-center container">
 
@@ -76,7 +48,7 @@
                     <th scope="col">Primer Apellido</th>
                     <th scope="col">Segundo Apellido</th>
                 </tr>
-                
+                <?php if (isset($secciones) && !empty($secciones)) : ?>
                     <?php while ($seccion = $secciones->fetch_object()) :
                         if ($seccion->nivel == 'Bachillerato') :
                     ?>
@@ -107,21 +79,8 @@
                             </tr>
                         <?php endif; ?>
                     <?php endwhile; ?>
+                <?php endif; ?>
 
             </table>
 
 </div>
-<?php else : ?>
-    <div class="card text-center" style="margin-top: 150px;">
-        <div class="card-header" style="font-size: 25px;">
-            Registros Vacios..
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Asigancion de Secciones a los Estudiantes</h5>
-            <p class="card-text py-3">Por los Momentos Ningun Estudiante ha sido Ingresado</p>
-        </div>
-        <div class="card-footer text-muted">
-            &copy; 2020 Institute Academy | INAC
-        </div>
-    </div>
-<?php endif; ?>

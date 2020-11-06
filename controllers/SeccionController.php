@@ -1,6 +1,108 @@
 <?php
 require_once 'models/seccion.php';
 class SeccionController{
+    
+    public function buscador_estudiante_p()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+
+            $seccion_s = new Seccion();
+            $grados = $seccion_s->getAllBySearchP($nombre);
+            if ($grados) {
+                require_once 'views/seccion/search_grado.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'seccion/gestion_grado');
+            }
+        } else {
+            header('location: ' . base_url . 'seccion/gestion_grado');
+        }
+    }
+    public function buscador_seccion_p()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nivel_id = isset($_POST['nivel_id']) ? $_POST['nivel_id'] : false;
+            $seccion = isset($_POST['seccion']) ? $_POST['seccion'] : false;
+
+            $seccion_s = new Seccion();
+            $grados = $seccion_s->getAllByNivel($nivel_id, $seccion);
+            if ($grados) {
+                require_once 'views/seccion/search_grado.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'seccion/gestion_grado');
+            }
+        } else {
+            header('location: ' . base_url . 'seccion/gestion_grado');
+        }
+    }
+    
+    public function buscador_estudiante()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+
+            $seccion_s = new Seccion();
+            $secciones = $seccion_s->getAllBySearchB($nombre);
+            if ($secciones) {
+                require_once 'views/seccion/search_bachillerato.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'seccion/gestion_bachillerato');
+            }
+        } else {
+            header('location: ' . base_url . 'seccion/gestion_bachillerato');
+        }
+    }
+
+    public function buscador_seccion()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nivel_id = isset($_POST['nivel_id']) ? $_POST['nivel_id'] : false;
+            $seccion = isset($_POST['seccion']) ? $_POST['seccion'] : false;
+
+            $seccion_s = new Seccion();
+            $secciones = $seccion_s->getAllByNivel($nivel_id, $seccion);
+            if ($secciones) {
+                require_once 'views/seccion/search_bachillerato.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'seccion/gestion_bachillerato');
+            }
+        } else {
+            header('location: ' . base_url . 'seccion/gestion_bachillerato');
+        }
+    }
+    
+    public function buscador_nivel()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nivel_id = isset($_POST['nivel_id']) ? $_POST['nivel_id'] : false;
+            $seccion = isset($_POST['seccion']) ? $_POST['seccion'] : false;
+
+            $seccion_s = new Seccion();
+            $estudiantes = $seccion_s->getAllBySearch($nivel_id, $seccion);
+            if ($estudiantes) {
+                require_once 'views/seccion/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'seccion/control_secciones');
+            }
+        } else {
+            header('location: ' . base_url . 'seccion/control_secciones');
+        }
+    }
 
     public function control_secciones(){
         Utils::isAdmin();
@@ -107,5 +209,63 @@ class SeccionController{
             }
         }
         header('location: ' . base_url . 'seccion/gestion_grado');
+    }
+
+    public function detail()
+    {
+        Utils::isAdmin();
+        if (isset($_GET['id'])) {
+            $estudiante_id = $_GET['id'];
+
+            $estudiantes = new Seccion();
+            $estudiantes->setEstudiante_id($estudiante_id);
+            $estudiante = $estudiantes->getOne();
+
+            require_once 'views/seccion/detail.php';
+        } else {
+            header('location:' . base_url . 'seccion/gestion_bachillerato');
+        }
+    }
+
+    public function change(){
+        if(isset($_POST)){
+            $estudiante_id = isset($_POST['estudiante_id']) ? $_POST['estudiante_id'] : false;
+            $nombre_seccion = isset($_POST['nombre_seccion']) ? $_POST['nombre_seccion'] : false;
+
+            $seccion = new Seccion();
+            $seccion->setEstudiante_id($estudiante_id);
+            $seccion->setNombre_seccion($nombre_seccion);
+            $update = $seccion->edit_seccion();
+
+            if($update){
+                $_SESSION['estado'] = 'success';
+            }else {
+                $_SESSION['estado'] = 'failed';
+            }
+            header('location: ' . base_url . 'seccion/gestion_bachillerato');
+        }else {
+            header('location:' . base_url . 'seccion/gestion_bachillerato');
+        }
+    }
+
+    public function change_p(){
+        if(isset($_POST)){
+            $estudiante_id = isset($_POST['estudiante_id']) ? $_POST['estudiante_id'] : false;
+            $nombre_seccion = isset($_POST['nombre_seccion']) ? $_POST['nombre_seccion'] : false;
+
+            $seccion = new Seccion();
+            $seccion->setEstudiante_id($estudiante_id);
+            $seccion->setNombre_seccion($nombre_seccion);
+            $update = $seccion->edit_seccion();
+
+            if($update){
+                $_SESSION['estado'] = 'success';
+            }else {
+                $_SESSION['estado'] = 'failed';
+            }
+            header('location: ' . base_url . 'seccion/gestion_grado');
+        }else {
+            header('location:' . base_url . 'seccion/gestion_grado');
+        }
     }
 }

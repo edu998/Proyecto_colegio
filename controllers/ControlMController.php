@@ -4,6 +4,67 @@ require_once 'models/controlMateria.php';
 
 class ControlMController
 {
+    public function buscador_nivel()
+    {
+        Utils::isAdmin();
+        if (isset($_POST)) {
+
+            $nivel_id = isset($_POST['nivel_id']) ? $_POST['nivel_id'] : false;
+            $seccion = isset($_POST['seccion']) ? $_POST['seccion'] : false;
+
+            $controlM = new ControlMateria();
+            
+            $materias_p = $controlM->getAllBySearch($nivel_id, $seccion);
+            if ($materias_p) {
+                require_once 'views/control/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'controlm/control_materias');
+            }
+        } else {
+            header('location: ' . base_url . 'controlm/control_materias');
+        }
+    }
+
+    public function buscador_horario()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $controlM = new ControlMateria();
+            $materias_p = $controlM->getSeccionByProfesor($nombre);
+            if ($materias_p) {
+                require_once 'views/control/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'controlm/control_materias');
+            }
+        } else {
+            header('location: ' . base_url . 'controlm/control_materias');
+        }
+    }
+
+    public function buscador()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $controlM = new ControlMateria();
+            $materias_p = $controlM->getSeccionByProfesor($nombre);
+            if ($materias_p) {
+                require_once 'views/control/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'controlm/control_materias');
+            }
+        } else {
+            header('location: ' . base_url . 'controlm/control_materias');
+        }
+    }
 
     public function control_materias()
     {

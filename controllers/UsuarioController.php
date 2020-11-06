@@ -5,6 +5,26 @@ require_once 'models/estudiante.php';
 class UsuarioController
 {
 
+    public function buscador_usuario()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['nombre'])) {
+
+            $nombre = $_POST['nombre'];
+
+            $usuario = new Usuario();
+            $profesores = $usuario->getAllBySearch($nombre);
+            if ($profesores) {
+                require_once 'views/usuario/search.php';
+            }else{
+                $_SESSION['search_m'] = 'failed';
+                header('location: ' . base_url . 'usuario/gestion_profesor');
+            }
+        } else {
+            header('location: ' . base_url . 'usuario/gestion_profesor');
+        }
+    }
+
     public function gestion_profesor()
     {
         Utils::isAdmin();

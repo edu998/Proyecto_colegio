@@ -14,6 +14,7 @@ class Estudiante
     private $email;
     private $sexo;
     private $direccion;
+    private $status;
     private $db;
 
 
@@ -142,6 +143,19 @@ class Estudiante
         return $this;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
     public function getDireccion()
     {
         return $this->direccion;
@@ -154,13 +168,29 @@ class Estudiante
         return $this;
     }
 
-    public function getListado(){
-        $sql = "SELECT i.status AS 'status',e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero'  FROM inscripcion i INNER JOIN estudiante e ON i.estudiante_id = e.id INNER JOIN nivel n ON e.nivel_id = n.id ORDER BY i.id DESC";
-        $estudiantes = $this->db->query($sql);
+    public function getListado($buscador = null){
+        $sql = "SELECT e.id AS 'estudiante_id', i.status AS 'status',e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero'  FROM inscripcion i INNER JOIN estudiante e ON i.estudiante_id = e.id INNER JOIN nivel n ON e.nivel_id = n.id ORDER BY i.id DESC";
+        
 
+        if($buscador != null){
+            $sql = "SELECT e.id AS 'estudiante_id', i.status AS 'status',e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero'  FROM inscripcion i INNER JOIN estudiante e ON i.estudiante_id = e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE i.status LIKE '%$buscador%' OR e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.segundo_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR e.segundo_apellido LIKE '%$buscador%'";
+        }
+        $estudiantes = $this->db->query($sql);
         $result = false;
         if($estudiantes && $estudiantes->num_rows >= 1){
             $result = $estudiantes;
+        }
+
+        return $result;
+    }
+
+    public function getOne(){
+    $sql = "SELECT e.id AS 'estudiante_id', i.status AS 'status',e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero'  FROM inscripcion i INNER JOIN estudiante e ON i.estudiante_id = e.id INNER JOIN nivel n ON e.nivel_id = n.id WHERE e.id={$this->getId()}";
+        $estudiante = $this->db->query($sql);
+
+        $result = false;
+        if($estudiante && $estudiante->num_rows == 1){
+            $result = $estudiante->fetch_object();
         }
 
         return $result;
@@ -208,4 +238,19 @@ class Estudiante
 
         return $result;
     }
+
+    public function edit_status()
+    {
+        $sql = "UPDATE inscripcion SET status='{$this->getStatus()}' WHERE estudiante_id={$this->getId()}";
+        $status = $this->db->query($sql);
+
+        $result = false;
+
+        if ($status) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
 }

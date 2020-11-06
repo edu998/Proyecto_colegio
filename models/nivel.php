@@ -73,7 +73,7 @@ class Nivel
         $nombre = $this->nombre;
         $tipo = $this->tipo;
         $numero_tipo = $this->numero_tipo;
-        $sql = "SELECT * FROM nivel WHERE nombre='{$nombre}' AND tipo='{$tipo}' AND numero_tipo={$numero_tipo};";
+        $sql = "SELECT nombre, tipo, numero_tipo FROM nivel WHERE nombre='{$nombre}' AND tipo='{$tipo}' AND numero_tipo={$numero_tipo};";
         $search = $this->db->query($sql);
 
         if ($search && $search->num_rows != 0) {

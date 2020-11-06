@@ -73,6 +73,17 @@ class Materia
         }
     }
 
+    public function getAllBySearch($buscador)
+    {
+        $sql = "SELECT * FROM materia WHERE nombre LIKE '%$buscador%'";
+        $materias = $this->db->query($sql);
+        $result = false;
+        if ($materias && $materias->num_rows >= 1) {
+            $result = $materias;
+            return $result;
+        }
+    }
+
     public function delete()
     {
         $sql = "DELETE FROM materia WHERE id={$this->getId()}";
