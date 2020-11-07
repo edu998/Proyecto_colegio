@@ -31,10 +31,10 @@
                     <div class="portfolio-container">
                         <div class="portfolio-details">
                             <a href="<?= base_url ?>pago/elige_tipo_pago&nombre_pago=inscripcion">
-                                <h2>Inscripcion</h2>
+                                <h2 class="text-black">Inscripcion</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-03.jpg" class="img-fluid" alt="Portfolio 03">
+                        <img src="<?= base_url ?>assets/images/portfolio-10.jpg" class="img-fluid" alt="Portfolio 03">
                         </a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                 <h2>Matricula</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                 <h2>Derecho a Grado</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
