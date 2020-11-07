@@ -198,7 +198,7 @@ class Estudiante
 
     public function save()
     {
-        $sql = "INSERT INTO estudiante VALUES(NULL, {$this->getCedula()}, {$this->getNivel_id()}, '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";
+        $sql = "CALL Add_estudiante ({$this->getCedula()}, {$this->getNivel_id()}, '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";
 
         $save = $this->db->query($sql);
         $result = false;
@@ -214,7 +214,7 @@ class Estudiante
         $estudiante = $this->db->query($sql);
         $estudiante_id = $estudiante->fetch_object()->estudiante;
 
-        $insert = "INSERT INTO inscripcion VALUES(null, {$estudiante_id}, 'ingresado')";
+        $insert = "CALL Add_inscripcion ({$estudiante_id}, 'ingresado')";
         $save_inscripcion = $this->db->query($insert);
 
         $result = false;

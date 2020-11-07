@@ -156,7 +156,7 @@ class Usuario_A
 
     public function save()
     {
-        $sql = "INSERT INTO usuario VALUES(NULL, {$this->getCedula()}, 'user', '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";
+        $sql = "CALL Add_usuario ({$this->getCedula()}, 'user', '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";
 
         $save = $this->db->query($sql);
         $result = false;

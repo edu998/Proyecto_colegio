@@ -56,7 +56,7 @@ class Seccion
 
     public function save()
     {
-        $sql = "INSERT INTO seccion VALUES(null, {$this->getEstudiante_id()}, '{$this->getNombre_seccion()}')";
+        $sql = "CALL Add_seccion ({$this->getEstudiante_id()}, '{$this->getNombre_seccion()}')";
         $save = $this->db->query($sql);
         $result = false;
         if ($save) {

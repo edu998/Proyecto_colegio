@@ -9,6 +9,17 @@ numero_tipo     VARCHAR(150) not null,
 CONSTRAINT  pk_nivel PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
+DELIMITER //
+CREATE PROCEDURE Add_nivel(
+    IN _nombre      VARCHAR(150),
+    IN _tipo        VARCHAR(100),
+    IN _numero_tipo VARCHAR(150)
+)
+BEGIN
+    INSERT INTO nivel VALUES(null, _nombre, _tipo, _numero_tipo);
+END
+//
+
 CREATE TABLE IF NOT EXISTS NIVEL_INSERT(
 id              int(255),
 nombre          VARCHAR(150),
@@ -137,6 +148,16 @@ CONSTRAINT  pk_inscripcion PRIMARY KEY(id),
 CONSTRAINT  fk_inscripcion_estudiante FOREIGN KEY(estudiante_id) REFERENCES estudiante(id)
 )ENGINE=InnoDb;
 
+DELIMITER //
+CREATE PROCEDURE Add_inscripcion(
+    IN _estudiante_id      int(255),
+    IN _status        VARCHAR(100)
+)
+BEGIN
+    INSERT INTO inscripcion VALUES(null, _estudiante_id, _status);
+END
+//
+
 CREATE TABLE IF NOT EXISTS INSCRIPCION_INSERT(
 id                  int(255),
 estudiante_id       int(255),
@@ -185,6 +206,24 @@ direccion           TEXT,
 CONSTRAINT  pk_usuario PRIMARY KEY(id),
 CONSTRAINT uq_email  UNIQUE(email)
 )ENGINE=InnoDb;
+
+DELIMITER //
+CREATE PROCEDURE Add_usuario(
+_cedula              VARCHAR(12),
+_role                VARCHAR(15),
+_primer_nombre       VARCHAR(150),
+_segundo_nombre      VARCHAR(150),
+_primer_apellido     VARCHAR(150),
+_segundo_apellido    VARCHAR(150),    
+_telefono_celular    VARCHAR(100),
+_email               VARCHAR(150),
+_sexo                VARCHAR(150),
+_direccion           TEXT
+)
+BEGIN
+    INSERT INTO usuario VALUES(null, _cedula, _role, _primer_nombre, _segundo_nombre, _primer_apellido, _segundo_apellido, _telefono_celular, _email, _sexo, _direccion);
+END
+//
 
 CREATE TABLE IF NOT EXISTS USUARIO_INSERT(
 id                  int(255),    
@@ -257,6 +296,15 @@ nombre              VARCHAR(100) not null,
 CONSTRAINT  pk_materia PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
+DELIMITER //
+CREATE PROCEDURE Add_materia(
+_nombre              VARCHAR(100)
+)
+BEGIN
+    INSERT INTO materia VALUES(null, _nombre);
+END
+//
+
 CREATE TABLE IF NOT EXISTS MATERIA_INSERT(
 id                  int(255),
 nombre              VARCHAR(100),
@@ -295,6 +343,20 @@ CONSTRAINT  pk_det_mat_prof PRIMARY KEY(id),
 CONSTRAINT  fk_det_usuario FOREIGN KEY(usuario_id) REFERENCES usuario(id),
 CONSTRAINT  fk_det_materia  FOREIGN KEY(materia_id) REFERENCES materia(id)
 )ENGINE=InnoDb;
+
+DELIMITER //
+CREATE PROCEDURE Add_det_mat_prof(
+  _usuario_id      int(255),
+  _materia_id    int(255),
+  _nivel_id  int(255),
+  _seccion   varchar(50),
+  _horario_id int(255),
+  _dia           varchar(50)
+)
+BEGIN
+    INSERT INTO det_mat_prof VALUES(null, _usuario_id, _materia_id, _nivel_id, _seccion, _horario_id, _dia);
+END
+//
 
 CREATE TABLE IF NOT EXISTS DET_INSERT(
 id                  int(255),
@@ -339,13 +401,21 @@ CREATE TRIGGER ELIMINA_DET_AD AFTER DELETE ON det_mat_prof FOR EACH ROW INSERT I
 
 CREATE TABLE IF NOT EXISTS seccion(
 id                        int(255) auto_increment not null,
-detalle_id                int(255) not null,
 estudiante_id             int(255) not null,
 nombre_seccion            VARCHAR(100) not null,
 CONSTRAINT  pk_seccion PRIMARY KEY(id),
-CONSTRAINT  fk_seccion_detalle FOREIGN KEY(detalle_id) REFERENCES det_mat_prof(id),
 CONSTRAINT  fk_seccion_estudiante  FOREIGN KEY(estudiante_id) REFERENCES estudiante(id)
 )ENGINE=InnoDb;
+
+DELIMITER //
+CREATE PROCEDURE Add_seccion(
+_estudiante_id             int(255),
+_nombre_seccion            VARCHAR(100)
+)
+BEGIN
+    INSERT INTO seccion VALUES(null, _estudiante_id, _nombre_seccion);
+END
+//
 
 CREATE TABLE IF NOT EXISTS SECCION_INSERT(
 id                        int(255),
@@ -392,11 +462,25 @@ primera_nota              VARCHAR(120) not null,
 segunda_nota              VARCHAR(120) not null,
 tercera_nota              VARCHAR(120) not null,
 cuarta_nota               VARCHAR(120) not null,
-nota_final                VARCHAR(120) not null,
 CONSTRAINT  pk_nota PRIMARY KEY(id),
 CONSTRAINT  fk_nota_estudiante  FOREIGN KEY(estudiante_id) REFERENCES estudiante(id),
 CONSTRAINT  fk_nota_materia FOREIGN KEY(materia_id) REFERENCES materia(id)
 )ENGINE=InnoDb;
+
+DELIMITER //
+CREATE PROCEDURE Add_nota(
+_usuario_id int(255),
+  _estudiante_id int(255),
+  _materia_id int(255),
+  _primera_nota varchar(120),
+  _segunda_nota varchar(120),
+  _tercera_nota varchar(120),
+  _cuarta_nota varchar(120)
+)
+BEGIN
+    INSERT INTO nota VALUES(null, _usuario_id, _estudiante_id, _materia_id, _primera_nota, _segunda_nota, _tercera_nota, _cuarta_nota);
+END
+//
 
 CREATE TABLE IF NOT EXISTS NOTA_INSERT(
 id                        int(255),
@@ -463,6 +547,20 @@ CONSTRAINT  pk_pago PRIMARY KEY(id),
 CONSTRAINT  fk_pago_estudiante FOREIGN KEY(estudiante_id) REFERENCES estudiante(id)
 )ENGINE=InnoDb;
 
+
+DELIMITER //
+CREATE PROCEDURE Add_pago(
+_estudiante_id int(255),
+  _tipo_pago varchar(200),
+  _descripcion text,
+  _nombre_pago varchar(50),
+  _transferencia varchar(100),
+)
+BEGIN
+    INSERT INTO pago VALUES(null, _estudiante_id, _tipo_pago, _descripcion, _nombre_pago, _transferencia);
+END
+//
+
 CREATE TABLE IF NOT EXISTS PAGO_INSERT(
 id                        int(255),
 estudiante_id             int(255),
@@ -518,6 +616,16 @@ CONSTRAINT  pk_control_pago PRIMARY KEY(id),
 CONSTRAINT  fk_control_p_pago FOREIGN KEY(pago_id) REFERENCES pago(id)
 )ENGINE=InnoDb;
 
+DELIMITER //
+CREATE PROCEDURE Add_control(
+_pago_id int(255),
+  _status varchar(100)
+)
+BEGIN
+    INSERT INTO control_pago VALUES(null, _pago_id, _status);
+END
+//
+
 CREATE TABLE IF NOT EXISTS CONTROL_INSERT(
 id                        int(255),
 pago_id                   int(255),
@@ -550,4 +658,32 @@ deleted_at      timestamp
 )ENGINE=InnoDb;
 
 CREATE TRIGGER ELIMINA_CONTROL_AD AFTER DELETE ON control_pago FOR EACH ROW INSERT INTO control_delete VALUES(OLD.id, OLD.pago_id, OLD.status, CURRENT_USER(), NOW());
+
+DELIMITER //
+CREATE PROCEDURE Add_estudiante(
+_cedula              VARCHAR(12),
+_nivel_id                int(255),
+_primer_nombre       VARCHAR(150),
+_segundo_nombre      VARCHAR(150),
+_primer_apellido     VARCHAR(150),
+_segundo_apellido    VARCHAR(150),    
+_telefono_celular    VARCHAR(100),
+_email               VARCHAR(150),
+_sexo                VARCHAR(150),
+_direccion           TEXT
+)
+BEGIN
+    INSERT INTO estudiante VALUES(null, _cedula, _nivel_id, _primer_nombre, _segundo_nombre, _primer_apellido, _segundo_apellido, _telefono_celular, _email, _sexo, _direccion);
+END
+//
+
+DELIMITER //
+CREATE PROCEDURE Add_horario(
+_horario_desde time,
+  _horario_hasta time
+)
+BEGIN
+    INSERT INTO horario VALUES(null, _horario_desde, _horario_hasta);
+END
+//
 

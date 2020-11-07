@@ -52,7 +52,7 @@ class Horario{
     }
 
     public function save(){
-        $sql = "INSERT INTO horario VALUES(null, '{$this->getHorario_desde()}', '{$this->getHorario_hasta()}')";
+        $sql = "CALL Add_horario ('{$this->getHorario_desde()}', '{$this->getHorario_hasta()}')";
         $save = $this->db->query($sql);
         $result = false;
         if($save){

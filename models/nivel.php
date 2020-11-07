@@ -79,7 +79,7 @@ class Nivel
         if ($search && $search->num_rows != 0) {
             $result = false;
         } else {
-            $sql = "INSERT INTO nivel VALUES(null, '{$this->getNombre()}', '{$this->getTipo()}', '{$this->getNumero_tipo()}')";
+            $sql = "CALL Add_nivel ('{$this->getNombre()}', '{$this->getTipo()}', '{$this->getNumero_tipo()}')";
             $result = $this->db->query($sql);
         }
 

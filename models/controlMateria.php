@@ -129,7 +129,7 @@ class ControlMateria
         if($query && $query->num_rows != 0){
             $result = false;
         }else{
-            $insert = "INSERT INTO det_mat_prof VALUES(null, {$this->getUsuario_id()}, {$this->getMateria_id()}, {$this->getNivel_id()}, '{$this->getSeccion()}', {$this->getHorario_id()}, '{$this->getDia()}')";
+            $insert = "CALL Add_det_mat_prof ({$this->getUsuario_id()}, {$this->getMateria_id()}, {$this->getNivel_id()}, '{$this->getSeccion()}', {$this->getHorario_id()}, '{$this->getDia()}')";
             $result = $this->db->query($insert);
         }
         return $result;

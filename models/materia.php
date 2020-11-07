@@ -41,7 +41,7 @@ class Materia
 
     public function save()
     {
-        $sql = "INSERT INTO materia VALUES(null, '{$this->getNombre()}')";
+        $sql = "CALL Add_materia ('{$this->getNombre()}')";
         $save = $this->db->query($sql);
         $result = false;
         if ($save) {

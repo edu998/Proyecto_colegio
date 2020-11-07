@@ -142,7 +142,7 @@ class Pago_E
 
     public function save()
     {
-        $sql = "INSERT INTO pago VALUES(null, {$this->getEsudiante_id()}, '{$this->getTipo_pago()}', '{$this->getDescripcion()}', '{$this->getNombre_pago()}', '{$this->getTransferencia()}', CURDATE(), CURDATE())";
+        $sql = "CALL Add_pago ({$this->getEsudiante_id()}, '{$this->getTipo_pago()}', '{$this->getDescripcion()}', '{$this->getNombre_pago()}', '{$this->getTransferencia()}')";
         $save = $this->db->query($sql);
 
         $result = false;
@@ -162,10 +162,10 @@ class Pago_E
         $pago_id = $pago->fetch_object()->pago;
 
         if ($tipo_pago == 'transferencia') {
-            $insert_t = "INSERT INTO control_pago VALUES(null, {$pago_id}, 'Ya Pago', CURDATE(), CURDATE())";
+            $insert_t = "CALL Add_control ({$pago_id}, 'Ya Pago')";
             $save_control = $this->db->query($insert_t);
         } elseif ($tipo_pago == 'efectivo') {
-            $insert_e = "INSERT INTO control_pago VALUES(null, {$pago_id}, 'No ha Pagado', CURDATE(), CURDATE())";
+            $insert_e = "CALL Add_control ({$pago_id}, 'No ha Pagado')";
             $save_control = $this->db->query($insert_e);
         }
 
