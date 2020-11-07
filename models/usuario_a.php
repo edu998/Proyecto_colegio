@@ -1,6 +1,6 @@
 <?php
 
-class Usuario
+class Usuario_A
 {
 
     private $id;
@@ -19,7 +19,7 @@ class Usuario
 
     public function __construct()
     {
-        $this->db = DB::connectionP();
+        $this->db = DB::connection();
     }
 
     public function getId()
@@ -154,87 +154,29 @@ class Usuario
         return $this;
     }
 
-    public function getOne()
+    public function save()
     {
-        $sql = "SELECT * FROM usuario WHERE id={$this->getId()}";
-        $usuario = $this->db->query($sql);
+        $sql = "INSERT INTO usuario VALUES(NULL, {$this->getCedula()}, 'user', '{$this->getPrimer_nombre()}', '{$this->getSegundo_nombre()}', '{$this->getPrimer_apellido()}', '{$this->getSegundo_apellido()}', {$this->getTelefono_celular()}, '{$this->getEmail()}', '{$this->getSexo()}', '{$this->getDireccion()}')";
+
+        $save = $this->db->query($sql);
         $result = false;
-        if ($usuario && $usuario->num_rows == 1) {
-            $result = $usuario->fetch_object();
-            return $result;
-        }
-    }
-
-    public function getAll()
-    {
-        $sql = "SELECT * FROM usuario ORDER BY id DESC";
-        $niveles = $this->db->query($sql);
-        $result = false;
-        if ($niveles && $niveles->num_rows >= 1) {
-            $result = $niveles;
-            return $result;
-        }
-    }
-
-    public function getAllBySearch($buscador)
-    {
-        $sql = "SELECT * FROM usuario WHERE primer_nombre LIKE '%$buscador%' OR primer_apellido LIKE '%$buscador%' OR segundo_nombre LIKE '%$buscador%' OR segundo_apellido LIKE '%$buscador%' OR cedula LIKE '%$buscador%'";
-        $usuarios = $this->db->query($sql);
-        $result = false;
-        if ($usuarios && $usuarios->num_rows >= 1) {
-            $result = $usuarios;
-            return $result;
-        }
-    }
-
-    public function login()
-    {
-        $result = false;
-        $cedula = $this->cedula;
-        $sql = "SELECT * FROM usuario WHERE cedula = $cedula";
-        $authentication = $this->db->query($sql);
-
-        if ($authentication && $authentication->num_rows == 1) {
-            $result = $authentication->fetch_object();
-        }
-
-        return $result;
-    }
-
-    public function getUserById()
-    {
-        $sql = "SELECT * FROM usuario WHERE id={$this->getId()}";
-        $usuario = $this->db->query($sql);
-
-        $result = false;
-        if($usuario && $usuario->num_rows == 1){
-            $result = $usuario->fetch_object();
-        }
-
-        return $result;
-    }
-
-    public function delete()
-    {
-        $sql = "DELETE FROM usuario WHERE id={$this->getId()}";
-        $delete = $this->db->query($sql);
-        $result = false;
-        if ($delete) {
+        if ($save) {
             $result = true;
         }
 
         return $result;
     }
 
-    public function delete_det()
+    public function update()
     {
-        $sql = "DELETE det.* FROM det_mat_prof det JOIN usuario u ON det.usuario_id = u.id WHERE u.id={$this->getId()}";
-        $delete = $this->db->query($sql);
+
+        $sql = "UPDATE usuario SET cedula={$this->getCedula()}, primer_nombre='{$this->getPrimer_nombre()}', segundo_nombre='{$this->getSegundo_nombre()}', primer_apellido='{$this->getPrimer_apellido()}', segundo_apellido='{$this->getSegundo_apellido()}', telefono_celular={$this->getTelefono_celular()}, email='{$this->getEmail()}', sexo='{$this->getSexo()}', direccion='{$this->getDireccion()}' WHERE id={$this->getId()}";
+        $update = $this->db->query($sql);
+        
         $result = false;
-        if ($delete) {
+        if ($update) {
             $result = true;
         }
-
         return $result;
     }
 }

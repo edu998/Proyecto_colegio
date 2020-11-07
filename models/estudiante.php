@@ -20,7 +20,7 @@ class Estudiante
 
     public function __construct()
     {
-        $this->db = DB::connection();
+        $this->db = DB::connectionE();
     }
 
     public function getId()
@@ -234,20 +234,6 @@ class Estudiante
 
         if ($authentication && $authentication->num_rows == 1) {
             $result = $authentication->fetch_object();
-        }
-
-        return $result;
-    }
-
-    public function edit_status()
-    {
-        $sql = "UPDATE inscripcion SET status='{$this->getStatus()}' WHERE estudiante_id={$this->getId()}";
-        $status = $this->db->query($sql);
-
-        $result = false;
-
-        if ($status) {
-            $result = true;
         }
 
         return $result;

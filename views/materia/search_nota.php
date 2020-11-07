@@ -3,7 +3,7 @@
         <h2 class="py-3 d-inline-block mt-5">Resultados de: '<?=$nombre?>' <a href="<?=base_url?>nota/gestion_notas" class="btn btn-primary">Ver Todas las Notas</a></h2>
 
         <form class="form-inline pb-3 my-lg-0" action="<?= base_url ?>nota/buscador" method="POST">
-            <input class="form-control mr-sm-2" style="font-size: 16px;" type="search" name="nombre" placeholder="Estudiante o Materia" aria-label="Search">
+            <input class="form-control mr-sm-2" style="font-size: 16px;" type="search" name="nombre" placeholder="Materia" aria-label="Search">
             <button class="btn btn-primary my-2 my-sm-0 p-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i style="border-radius: 500px;" class="fa fa-search"></i></button>
         </form>
 

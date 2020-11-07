@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/usuario.php';
+require_once 'models/usuario_a.php';
 require_once 'models/estudiante.php';
 class UsuarioController
 {
@@ -175,7 +176,7 @@ class UsuarioController
             }
 
             if (count($errors) == 0) {
-                $usuario = new Usuario();
+                $usuario = new Usuario_A();
                 $usuario->setCedula($cedula);
                 $usuario->setPrimer_nombre($primer_nombre);
                 $usuario->setSegundo_nombre($segundo_nombre);

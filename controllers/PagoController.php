@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/pago.php';
+require_once 'models/pago_e.php';
 
 class PagoController
 {
@@ -107,7 +108,7 @@ class PagoController
             }
 
             if (count($errors) == 0) {
-                $pago = new Pago();
+                $pago = new Pago_E();
                 $pago->setEsudiante_id($estudiante_id);
                 $pago->setTipo_pago($tipo_pago);
                 $pago->setDescripcion($descripcion);
@@ -166,7 +167,7 @@ class PagoController
             
 
             if (count($errors) == 0) {
-                $pago = new Pago();
+                $pago = new Pago_E();
                 $pago->setEsudiante_id($estudiante_id);
                 $pago->setTipo_pago($tipo_pago);
                 $pago->setDescripcion($descripcion);

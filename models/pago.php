@@ -171,41 +171,6 @@ class Pago
         return $result;
     }
 
-    public function save()
-    {
-        $sql = "INSERT INTO pago VALUES(null, {$this->getEsudiante_id()}, '{$this->getTipo_pago()}', '{$this->getDescripcion()}', '{$this->getNombre_pago()}', '{$this->getTransferencia()}', CURDATE(), CURDATE())";
-        $save = $this->db->query($sql);
-
-        $result = false;
-        if ($save) {
-            $result = true;
-        }
-
-        return $result;
-    }
-
-    public function save_control()
-    {
-        $result = false;
-        $tipo_pago = $this->tipo_pago;
-        $last_insert = "SELECT LAST_INSERT_ID() AS 'pago'";
-        $pago = $this->db->query($last_insert);
-        $pago_id = $pago->fetch_object()->pago;
-
-        if ($tipo_pago == 'transferencia') {
-            $insert_t = "INSERT INTO control_pago VALUES(null, {$pago_id}, 'Ya Pago', CURDATE(), CURDATE())";
-            $save_control = $this->db->query($insert_t);
-        } elseif ($tipo_pago == 'efectivo') {
-            $insert_e = "INSERT INTO control_pago VALUES(null, {$pago_id}, 'No ha Pagado', CURDATE(), CURDATE())";
-            $save_control = $this->db->query($insert_e);
-        }
-
-        if ($save_control) {
-            $result = true;
-        }
-        return $result;
-    }
-
     public function issetInscrip()
     {
         $sql = "SELECT * FROM pago WHERE estudiante_id = {$this->id} AND nombre_pago='inscripcion'";

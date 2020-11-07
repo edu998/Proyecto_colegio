@@ -23,7 +23,7 @@
                             <label for="status" class="text-center my-2" style="font-size: 17px;">Cambiar Estado de Pago:</label>
                             <input type="hidden" name="c_pago_id" value="<?= $pago->cp_id ?>">
                             <select class="form-control w-50 p-0 mx-auto" name="status">
-                                <option value="Ya Pago" <?= isset($pago) && is_object($pago) && $pago->status == 'Ya Pago' ? 'selected' : '' ?>>Ya Pago</option>
+                                <option value="Ya Pago" <?= isset($pago) && is_object($pago) && $pago->tipo_pago == 'Ya Pago' ? 'selected' : '' ?>>Ya Pago</option>
                                 <option value="No ha Pagado" <?= isset($pago) && is_object($pago) && $pago->status == 'No ha Pagado' ? 'selected' : '' ?>>No ha Pagado</option>
                             </select>
                             <input type="submit" value="Guardar Cambios" class="my-3 btn btn-primary">
@@ -45,7 +45,7 @@
 
                     <hr class="py-2">
 
-                    <?php if ($pago->transferencia != null && $pago->status == 'Ya Pago') : ?>
+                    <?php if ($pago->transferencia != null && $pago->tipo_pago == 'transferencia') : ?>
                         <h5 class="card-text mx-auto"><strong>Transferencia: </strong></h5>
                         <img class="mx-auto my-4" src="<?= base_url ?>comprobantes/<?= $pago->transferencia ?>" width="300" height="200">
                     <?php else : ?>

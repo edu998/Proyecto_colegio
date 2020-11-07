@@ -4,7 +4,7 @@
         <h5 class="d-block w-50 pb-4"><strong>Nota:</strong> Cada Estudiante ya sea de Primaria o Bachillerato Debera Tener una Nota Final igual a 10 o mayor que 10 para que el sistema lo reconozca como aprobado</h5>
 
         <form class="form-inline pb-3 my-lg-0" action="<?= base_url ?>nota/buscador" method="POST">
-            <input class="form-control mr-sm-2" style="font-size: 16px;" type="search" name="nombre" placeholder="Estudiante o Materia" aria-label="Search">
+            <input class="form-control mr-sm-2" style="font-size: 16px;" type="search" name="nombre" placeholder="Materia" aria-label="Search">
             <button class="btn btn-primary my-2 my-sm-0 p-2" style="min-width: 50px; border-radius: 5px; font-size: 16px;" type="submit"><i style="border-radius: 500px;" class="fa fa-search"></i></button>
         </form>
 

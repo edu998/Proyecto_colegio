@@ -105,7 +105,7 @@ class Seccion
 
     public function getAllBySearchB($buscador)
     {
-        $sql = "SELECT e.id AS 'id', e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero' FROM control_pago cp INNER JOIN pago p ON cp.pago_id = p.id INNER JOIN estudiante e ON p.estudiante_id = e.id  INNER JOIN nivel n ON e.nivel_id = n.id INNER JOIN inscripcion i ON i.estudiante_id = e.id WHERE p.nombre_pago = 'inscripcion' AND cp.status = 'Ya Pago' AND i.status = 'ingresado' AND n.tipo = 'Año' AND e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.segundo_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR e.segundo_apellido LIKE '%$buscador%'";
+        $sql = "SELECT e.id AS 'id', e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero' FROM control_pago cp INNER JOIN pago p ON cp.pago_id = p.id INNER JOIN estudiante e ON p.estudiante_id = e.id  INNER JOIN nivel n ON e.nivel_id = n.id INNER JOIN inscripcion i ON i.estudiante_id = e.id WHERE p.nombre_pago = 'inscripcion' AND cp.status = 'Ya Pago' AND i.status = 'ingresado' AND n.nombre = 'Bachillerato' AND e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.segundo_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR e.segundo_apellido LIKE '%$buscador%'";
 
         $search = $this->db->query($sql);
         $result = false;
@@ -117,7 +117,7 @@ class Seccion
 
     public function getAllBySearchP($buscador)
     {
-        $sql = "SELECT e.id AS 'id', e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero' FROM control_pago cp INNER JOIN pago p ON cp.pago_id = p.id INNER JOIN estudiante e ON p.estudiante_id = e.id  INNER JOIN nivel n ON e.nivel_id = n.id INNER JOIN inscripcion i ON i.estudiante_id = e.id WHERE p.nombre_pago = 'inscripcion' AND cp.status = 'Ya Pago' AND i.status = 'ingresado' AND n.tipo = 'Grado' AND e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.segundo_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR e.segundo_apellido LIKE '%$buscador%'";
+        $sql = "SELECT e.id AS 'id', e.cedula AS 'cedula', e.primer_nombre AS 'primer_nombre', e.segundo_nombre AS 'segundo_nombre', e.primer_apellido AS 'primer_apellido', e.segundo_apellido AS 'segundo_apellido', n.nombre AS 'nivel', n.tipo AS 'tipo', n.numero_tipo AS 'numero' FROM control_pago cp INNER JOIN pago p ON cp.pago_id = p.id INNER JOIN estudiante e ON p.estudiante_id = e.id  INNER JOIN nivel n ON e.nivel_id = n.id INNER JOIN inscripcion i ON i.estudiante_id = e.id WHERE p.nombre_pago = 'inscripcion' AND cp.status = 'Ya Pago' AND i.status = 'ingresado' AND n.nombre = 'Primaria' AND e.cedula LIKE '%$buscador%' OR e.primer_nombre LIKE '%$buscador%' OR e.segundo_nombre LIKE '%$buscador%' OR e.primer_apellido LIKE '%$buscador%' OR e.segundo_apellido LIKE '%$buscador%'";
 
         $search = $this->db->query($sql);
         $result = false;

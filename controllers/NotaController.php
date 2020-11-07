@@ -11,6 +11,7 @@ class NotaController{
             $nombre = $_POST['nombre'];
 
             $nota = new Nota();
+            $nota->setUsuario_id($_SESSION['user']->id);
             $notas = $nota->getAll($nombre);
             
             if ($notas) {

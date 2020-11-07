@@ -1,5 +1,6 @@
 <?php 
 require_once 'models/estudiante.php';
+require_once 'models/estudiante_i.php';
 class InscripcionController{
 
     
@@ -62,7 +63,7 @@ class InscripcionController{
             $estudiante_id = isset($_POST['estudiante_id']) ? $_POST['estudiante_id'] : false;
             $status = isset($_POST['status']) ? $_POST['status'] : false;
 
-            $estudiante = new Estudiante();
+            $estudiante = new Estudiante_I();
             $estudiante->setStatus($status);
             $estudiante->setId($estudiante_id);
             $update = $estudiante->edit_status();
