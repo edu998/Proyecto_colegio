@@ -3,7 +3,7 @@
     <div class="alert alert-success" role="alert">
       <strong>Tus Datos Han Sido Registrados, Para Completar la Inscripcion a nuestro Institute Academy Debes Realizar el Pago, Para eso Inicia Sesion <a href="<?= base_url ?>usuario/login">Aqui!</a></strong>
     </div>
-  <?php elseif (isset($_SESSION['estudiante_p']) && $_SESSION['nivel'] != 'estudiante_p') : ?>
+  <?php elseif (isset($_SESSION['estudiante_p']) && $_SESSION['estudiante_p'] != 'success') : ?>
     <div class="alert alert-danger" role="alert">
       <strong>Error!, al Inscribirte con Estos Datos o Los Datos Cedula o Email ya existen..</strong>
     <?php endif; ?>
