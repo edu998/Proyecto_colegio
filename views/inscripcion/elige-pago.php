@@ -11,7 +11,7 @@
                                 <h2>Matricula</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img width="100%" src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                                 <h2>Derecho a Grado</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img width="100%" src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
