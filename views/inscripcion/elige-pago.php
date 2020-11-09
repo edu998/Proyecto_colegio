@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <div class="row">
+    <div class="row pb-5 pt-3">
         <h2 class="mt-5 mx-auto">Por favor, Selecciona Que vas a Pagar:</h2>
         <?php if (isset($_SESSION['student'])) : ?>
             <?php $estudiante = Utils::notPayInscrip($_SESSION['student']->id);
@@ -11,7 +11,7 @@
                                 <h2>Matricula</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                                 <h2>Derecho a Grado</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                 <h2>Matricula</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img width="100%" src="<?= base_url ?>assets/images/portfolio-11.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                 <h2>Derecho a Grado</h2>
 
                         </div>
-                        <img src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
+                        <img width="100%" src="<?= base_url ?>assets/images/portfolio-12.jpg" class="img-fluid" alt="Portfolio 04">
                         </a>
                     </div>
                 </div>
